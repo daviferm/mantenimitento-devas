@@ -1,0 +1,174 @@
+body {
+    background: #e96443;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #904e95, #e96443);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #904e95, #e96443);
+    font-family: 'Roboto', sans-serif;
+}
+
+.header>header {
+    position: fixed;
+    top: 20px;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 15px;
+    height: 40px;
+    padding: 10px 0px 5px 0px;
+    background-color: rgba(41, 103, 56, .5);
+    border-radius: 6px;
+    font-size: 1em;
+    z-index: 100;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    border: 0px solid black;
+    width: 100%;
+}
+
+.formulario section {
+    width: 100%;
+    display: inline-flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    color: #FFFFFF;
+}
+
+.formulario .barrio,
+.formulario .botonForm {
+    position: relative;
+}
+
+.formulario .form-control {
+    height: 35px;
+    width: 210px;
+    border-radius: 4px;
+    font-size: 1em;
+    outline: none;
+}
+
+.formulario #botonMapa {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 55px;
+    height: 35px;
+    border-radius: 4px;
+    padding-top: 4px;
+    background-color: rgb(70, 96, 164);
+    cursor: pointer;
+    color: white;
+    outline: none;
+    box-shadow: 2px 2px 10px gray;
+}
+
+.formulario #botonMapa ion-icon {
+    font-size: 1.5em;
+}
+
+.formulario #botonMapa:active {
+    transform: scale(.95);
+}
+
+body .main {
+    background-image: url("../img/torresMadrid.png");
+    background-repeat: repeat-y;
+    background-position: top center;
+    background-size: 100%;
+    height: 100vh;
+    width: 100%;
+    z-index: -10;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+}
+
+#mapa {
+    position: relative;
+    display: block;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    margin: 0px;
+    overflow: hidden;
+}
+
+#map {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.infoPark {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 1.2em;
+    color: black;
+}
+
+.infoPark p {
+    margin: 10px;
+}
+
+.check {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    color: #904e95;
+    font-weight: bolder;
+}
+
+.mapSave {
+    position: fixed;
+    right: 45px;
+    bottom: 15px;
+    font-size: 2em;
+    margin: 0px;
+    padding: 0px;
+    height: auto;
+    border: 1px solid black;
+}
+
+.mapSave ion-icon {
+    cursor: pointer;
+    z-index: 100;
+}
+
+.mapSave>ul {
+    list-style: none;
+    font-size: 1em;
+    float: left;
+    overflow: hidden;
+    position: relative;
+    margin: 0px;
+    margin-top: -70%;
+    width: 100px;
+    height: 100%;
+    border: 1px solid black;
+}
+
+@media screen and (min-width: 480px) {
+    body .main {
+        background-size: 480px;
+    }
+    #map {
+        width: 550px;
+        margin-left: 0px;
+    }
+    body {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: flex-start;
+    }
+    body .header,
+    #mapa {
+        display: inline-flex;
+        justify-content: center;
+    }
+    header {
+        width: 480px;
+    }
+}

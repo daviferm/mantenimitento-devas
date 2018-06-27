@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="js/modernizr.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <!-- <script src="js/baseDatos.js"></script> -->
+    <title>Mantenimiento Devas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+</head>
+
+<body>
+    <div class="header">
+        <header>
+            <div class="formulario">
+                <form action="#" id="formulario">
+                    <section class="for">
+                        <div class="barrio">
+                            <select class="form-control" id="barrio">
+                                <option value="0">Selectiona un Barrio</option>
+							</select>
+                        </div>
+                        <div class="botonForm">
+                            <button id="botonMapa" type="submit">
+								<ion-icon name="add"></ion-icon>
+							</button>
+                        </div>
+                    </section>
+                </form>
+            </div>
+            <div class="spinner"></div>
+        </header>
+    </div>
+    <div class="main">
+        <div id="mapa">
+            <div id="map"></div>
+        </div>
+    </div>
+    <div class="mapSave">
+        <ion-icon name="menu"></ion-icon>
+        <ul>
+            <li>Enlace</li>
+            <li>Enlace</li>
+            <li>Enlace</li>
+            <li>Enlace</li>
+        </ul>
+    </div>
+
+    <script src="https://unpkg.com/ionicons@4.0.0/dist/ionicons.js"></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDX2HNbva5rTOcAvc3TabY55P4Tk1LXIlY"></script>
+    <!-- <script src="js/mobile.js"></script> -->
+    <script src="./js/sweetalert2.all.min.js"></script>
+    <script src="https://unpkg.com/promise-polyfill"></script>
+    <script src="js/app.js" type="module"></script>
+</body>
+
+</html>
