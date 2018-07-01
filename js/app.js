@@ -1,8 +1,6 @@
 import { Mapa } from './MAP.js';
 import { baseDatos } from './baseDatos.js';
 
-const icono = '';
-console.log(icono);
 
 //Variables globales
 const selectBarrio = document.getElementById('barrio');
@@ -155,7 +153,7 @@ function ulSize() {
     let li = document.getElementsByTagName('li').length;
 
     if (activeUl) {
-        ul.style.width = '160px';
+        ul.style.width = '180px';
         ul.style.height = `${li*40}px`;
         activeUl = !activeUl;
     } else {

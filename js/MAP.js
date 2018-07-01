@@ -1,7 +1,6 @@
 import { baseDatos } from './baseDatos.js';
 
 
-
 export class Mapa {
     constructor(zoom, latLng) {
         //Inicializar y obtenet la propiedad de mapa
