@@ -1,4 +1,6 @@
 body {
+    margin: 0px;
+    padding: 0px;
     background: #e96443;
     /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #904e95, #e96443);
@@ -16,9 +18,9 @@ body {
 
 .header>header {
     position: absolute;
-    top: 20px;
+    top: 0px;
     width: 90%;
-    margin-top: 15px;
+    margin-top: 5px;
     height: 40px;
     padding: 10px 0px 5px 0px;
     background-color: rgba(41, 103, 56, .5);
@@ -109,8 +111,8 @@ body .main {
 
 .mapSave {
     position: fixed;
-    right: 45px;
-    bottom: 35px;
+    right: 25px;
+    bottom: 10px;
     font-size: 2em;
     margin: 0px;
     padding: 0px;
