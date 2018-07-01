@@ -1,3 +1,5 @@
+import { baseDatos } from './baseDatos.js';
+
 export class Mapa {
     constructor(zoom, latLng) {
         //Inicializar y obtenet la propiedad de mapa
@@ -13,7 +15,7 @@ export class Mapa {
         this.infoWindowActivo;
     }
 
-    mostrarPines(latLng, contenido, opacidad, barrio, name) {
+    mostrarPin(latLng, contenido, opacidad, name) {
         let marker = new google.maps.Marker({
             position: latLng,
             map: this.mapa,
@@ -21,7 +23,6 @@ export class Mapa {
             animation: google.maps.Animation.DROP,
             title: 'Parkímetro'
         });
-
         let infowindow = new google.maps.InfoWindow({
             content: contenido
         });
@@ -39,7 +40,7 @@ export class Mapa {
                     let numMet = e.target.parentElement.textContent.match(/\d{10}/)[0];
 
                     marker.setMap(null);
-                    borrarElemLocalStorage(name, barrio, numMet)
+                    borrarElemLocalStorage(name, numMet)
 
 
                 })
@@ -48,13 +49,40 @@ export class Mapa {
 
         })
 
+    }
+    crearMapa(barrioSeleccionado, name) {
 
+        let mets = [];
+        baseDatos.forEach(elem => {
+                if (elem.barrio.startsWith(barrioSeleccionado)) {
+
+                    let { latitud, longitud, alias } = elem;
+                    let contenido = `
+                        <div class="infoPark">
+                            <p>Número: ${alias}</p>
+                            <button id="btnInfo" type="button">Hecho</button>
+                        </div>
+                `;
+                    mets.push(alias);
+                    let latLng = {
+                        lat: Number(latitud),
+                        lng: Number(longitud)
+                    }
+
+                    this.mostrarPin(latLng, contenido, 1, name);
+                }
+            })
+            //Guardar datos en localStorage
+        agregarMapaLocalStorage(name);
+
+        // Agregar lista de parquímetros del mapa a localStorage
+        localStorage.setItem(name, JSON.stringify(mets));
     }
 
 
 }
 //Función para borrar los parkímetros de localStorage
-function borrarElemLocalStorage(name, barrio, numMet) {
+function borrarElemLocalStorage(name, numMet) {
 
     let mets = JSON.parse(localStorage.getItem(name));
     mets.forEach((item, index) => {
@@ -64,4 +92,34 @@ function borrarElemLocalStorage(name, barrio, numMet) {
     })
     localStorage.setItem(name, JSON.stringify(mets));
 
+}
+
+function agregarMapaLocalStorage(name) {
+    // tweets de localstorage
+    let mapSave;
+    mapSave = obtenerMapasLocalStorage();
+
+    // Añadir el nombre del nuevo mapa
+    mapSave.push(name);
+
+    // Eliminar nombres duplicados
+    let set = new Set(mapSave);
+
+    mapSave = [...set];
+
+    // Convertir a String y agregarlo a Local Storage
+    localStorage.setItem('mapSave', JSON.stringify(mapSave));
+
+}
+
+
+function obtenerMapasLocalStorage() {
+    let mapSave;
+    // Revisar valores de localstorage
+    if (localStorage.getItem('mapSave') === null) {
+        mapSave = [];
+    } else {
+        mapSave = JSON.parse(localStorage.getItem('mapSave'));
+    }
+    return mapSave;
 }

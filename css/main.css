@@ -124,12 +124,17 @@ body .main {
 .mapSave {
     position: fixed;
     right: 45px;
-    bottom: 15px;
+    bottom: 35px;
     font-size: 2em;
     margin: 0px;
     padding: 0px;
     height: auto;
-    border: 1px solid black;
+}
+
+.mapSave .ul {
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
 
 .mapSave ion-icon {
@@ -137,17 +142,47 @@ body .main {
     z-index: 100;
 }
 
-.mapSave>ul {
+ul {
     list-style: none;
     font-size: 1em;
-    float: left;
     overflow: hidden;
+    position: absolute;
+    bottom: 100%;
+    right: 100%;
+    margin-bottom: -25px;
+    width: 0px;
+    height: 0px;
+    transition-duration: .3s;
+}
+
+ul li {
     position: relative;
+    margin-left: -35px;
+    padding: 8px;
+    color: white;
+    border: 1px solid white;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, .6);
+    cursor: pointer;
+}
+
+ul li .link {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+ul li p {
     margin: 0px;
-    margin-top: -70%;
-    width: 100px;
-    height: 100%;
-    border: 1px solid black;
+    font-size: .6em;
+    color: white;
+}
+
+.cerrar {
+    position: absolute;
+    left: 85%;
+    top: 4px;
+    font-size: .7em;
 }
 
 @media screen and (min-width: 480px) {
