@@ -1,6 +1,9 @@
 import { Mapa } from './MAP.js';
 import { baseDatos } from './baseDatos.js';
 
+const icono = '';
+console.log(icono);
+
 //Variables globales
 const selectBarrio = document.getElementById('barrio');
 
@@ -225,4 +228,4 @@ function cargarMapaGuardado(nameMap) {
 //         //Guardar datos en localStorage
 //     localStorage.setItem(name, JSON.stringify(mets));
 
-// }
+// };
