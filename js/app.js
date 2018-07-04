@@ -58,11 +58,13 @@ async function mostrarMapa(e) {
                 lat: Number(park.latitud),
                 lng: Number(park.longitud)
             };
-            crearLi(name);
             const mapa = new Mapa(15, latLng);
 
             //Mostrar todos los parquímetros en el mapa 
             mapa.crearMapa(barrioSeleccionado, name);
+
+            crearLi(name);
+            cargarNumeroMapas();
         }
     }
 }
@@ -113,6 +115,7 @@ ul.addEventListener('click', (e) => {
                 activeUl = true;
                 //Actualizar tamaño de la lista
                 ulSize();
+                cargarNumeroMapas();
             }
         })
 
@@ -134,6 +137,8 @@ function crearLi(name) {
             </div>`;
     li.innerHTML = html;
     ul.appendChild(li);
+    const numMets = cargarNumeroMets(name);
+    li.setAttribute('data-mets', numMets);
 
 }
 
@@ -141,11 +146,26 @@ function crearLi(name) {
 function cargarMapasLocalStorage() {
     if (localStorage.getItem('mapSave') !== null) {
         let lis = JSON.parse(localStorage.getItem('mapSave'));
+        cargarNumeroMapas();
         lis.forEach((el) => {
             crearLi(el);
         })
 
     }
+}
+//Cargar número de listas guardadas
+function cargarNumeroMapas() {
+    let lis = JSON.parse(localStorage.getItem('mapSave'));
+    const mapSave = document.querySelector('.mapSave');
+
+    mapSave.setAttribute('data-count', lis.length);
+}
+//Cargar número de mets
+function cargarNumeroMets(name) {
+    let count = JSON.parse(localStorage.getItem(name));
+
+    return count.length;
+
 }
 
 //Actualizar tamaño de la lista de enlaces
@@ -153,7 +173,7 @@ function ulSize() {
     let li = document.getElementsByTagName('li').length;
 
     if (activeUl) {
-        ul.style.width = '180px';
+        ul.style.width = '190px';
         ul.style.height = `${li*40}px`;
         activeUl = !activeUl;
     } else {
@@ -164,7 +184,7 @@ function ulSize() {
 }
 //Cargar mapa guardado al cliquear en un enlace
 function cargarMapaGuardado(nameMap) {
-    console.log(nameMap);
+
     //Obtener el mapa de localStorage
     let mapaGuardado = JSON.parse(localStorage.getItem(nameMap));
 

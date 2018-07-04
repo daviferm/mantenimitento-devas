@@ -136,6 +136,26 @@ body .main {
     height: auto;
 }
 
+.mapSave:before {
+    content: "\f1d3";
+    font-family: "Ionicons";
+    font-size: 1.15em;
+    position: relative;
+    border-radius: 50px;
+    padding: 2px 4px;
+    top: 5px;
+    left: 90%;
+}
+
+.mapSave:after {
+    content: attr(data-count);
+    position: absolute;
+    color: beige;
+    font-size: .5em;
+    top: 16px;
+    left: 120%;
+}
+
 .mapSave .ul {
     position: relative;
     width: 100%;
@@ -145,9 +165,9 @@ body .main {
 .mapSave ion-icon {
     cursor: pointer;
     z-index: 100;
-    background-color: rgba(68, 155, 232, 0.8);
     padding: 2px;
     border-radius: 5px;
+    background-color: rgba(68, 155, 232, 0.8);
 }
 
 ul {
@@ -193,12 +213,17 @@ ul li p {
     font-size: .7em;
 }
 
+ul li:before {
+    content: attr(data-mets);
+    position: absolute;
+    color: rgb(101, 235, 233);
+    font-size: .5em;
+    top: 4px;
+    right: 40px;
+    z-index: 400;
+}
+
 @media screen and (min-width: 480px) {
-    body {
-        /* display: flex;
-        flex-direction: row;
-        justify-content: center; */
-    }
     .header {
         width: 100%;
         height: auto;
