@@ -1,6 +1,5 @@
 import { baseDatos } from './baseDatos.js';
 
-
 export class Mapa {
     constructor(zoom, latLng) {
         //Inicializar y obtenet la propiedad de mapa
@@ -16,14 +15,16 @@ export class Mapa {
         this.infoWindowActivo;
     }
 
-    mostrarPin(latLng, contenido, opacidad, name) {
+    mostrarPin(latLng, contenido, opacidad, name, alias) {
         let marker = new google.maps.Marker({
             position: latLng,
             map: this.mapa,
             opacity: opacidad,
             animation: google.maps.Animation.DROP,
+            label: alias,
             title: 'Parkímetro'
         });
+
         let infowindow = new google.maps.InfoWindow({
             content: contenido
         });
@@ -41,7 +42,7 @@ export class Mapa {
                     let numMet = e.target.parentElement.textContent.match(/\d{10}/)[0];
 
                     marker.setMap(null);
-                    borrarElemLocalStorage(name, numMet)
+                    borrarElemLocalStorage(name, alias, numMet)
 
 
                 })
@@ -55,25 +56,26 @@ export class Mapa {
 
         let mets = [];
         baseDatos.forEach(elem => {
-                if (elem.barrio.startsWith(barrioSeleccionado)) {
+            if (elem.barrio.startsWith(barrioSeleccionado)) {
 
-                    let { latitud, longitud, alias } = elem;
-                    let contenido = `
+                let { latitud, longitud, alias } = elem;
+                let contenido = `
                         <div class="infoPark">
                             <p>Número: ${alias}</p>
                             <button id="btnInfo" type="button">Hecho</button>
                         </div>
                 `;
-                    mets.push(alias);
-                    let latLng = {
-                        lat: Number(latitud),
-                        lng: Number(longitud)
-                    }
-
-                    this.mostrarPin(latLng, contenido, 1, name);
+                mets.push(alias);
+                let latLng = {
+                    lat: Number(latitud),
+                    lng: Number(longitud)
                 }
-            })
-            //Guardar datos en localStorage
+
+                this.mostrarPin(latLng, contenido, 1, name);
+            }
+        })
+
+        //Guardar datos en localStorage
         agregarMapaLocalStorage(name);
 
         // Agregar lista de parquímetros del mapa a localStorage

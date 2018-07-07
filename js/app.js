@@ -217,8 +217,9 @@ function cargarMapaGuardado(nameMap) {
             lat: Number(latitud),
             lng: Number(longitud)
         }
+        let alias = elem.substr(7);
 
-        let pin = mapa.mostrarPin(latLng, contenido, 1, nameMap);
+        let pin = mapa.mostrarPin(latLng, contenido, 1, nameMap, alias);
     })
 }
 
