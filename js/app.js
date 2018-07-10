@@ -162,9 +162,14 @@ function cargarNumeroMapas() {
 }
 //Cargar número de mets
 function cargarNumeroMets(name) {
-    let count = JSON.parse(localStorage.getItem(name));
-
-    return count.length;
+    let mets = JSON.parse(localStorage.getItem(name));
+    let count = 0;
+    mets.forEach(function(el) {
+        if (!el.hecho) {
+            count++
+        }
+    })
+    return count;
 
 }
 
@@ -188,63 +193,33 @@ function cargarMapaGuardado(nameMap) {
     //Obtener el mapa de localStorage
     let mapaGuardado = JSON.parse(localStorage.getItem(nameMap));
 
-    //Acceder al primer parkímetro para estabelcer el centro del mapa
-    let park = baseDatos.find(item => {
-        return item.alias === mapaGuardado[0];
-    });
-
     const latLng = {
-        lat: Number(park.latitud),
-        lng: Number(park.longitud)
+        lat: Number(mapaGuardado[0].latitud),
+        lng: Number(mapaGuardado[0].longitud)
     };
 
     const mapa = new Mapa(15, latLng);
-
+    let opacidad;
     mapaGuardado.forEach((elem) => {
 
         let contenido = `
             <div class="infoPark">
-                <p>Número: ${elem}</p>
+                <p>Número: ${elem.alias}</p>
                 <button id="btnInfo" type="button">Hecho</button>
             </div>
         `;
-        let parquimetro = baseDatos.find((el) => {
-            return el.alias == elem;
-        })
-        let { latitud, longitud } = parquimetro;
 
-        let latLng = {
-            lat: Number(latitud),
-            lng: Number(longitud)
+        const latLng = {
+            lat: Number(elem.latitud),
+            lng: Number(elem.longitud)
+        };
+        let alias = elem.alias.substr(7);
+        if (elem.hecho) {
+            opacidad = .6;
+        } else {
+            opacidad = 1;
         }
-        let alias = elem.substr(7);
 
-        let pin = mapa.mostrarPin(latLng, contenido, 1, nameMap, alias);
+        let pin = mapa.mostrarPin(latLng, contenido, opacidad, nameMap, alias);
     })
 }
-
-// Función para mostrar todos los pines de los parquímetros en el mapa
-// function mostrarParquimetros(barrioSeleccionado, mapa, name) {
-//     let mets = [barrioSeleccionado];
-//     baseDatos.forEach(elem => {
-//             if (elem.barrio.startsWith(barrioSeleccionado)) {
-
-//                 let { latitud, longitud, alias } = elem;
-//                 let contenido = `
-//                 <div class="infoPark">
-//                     <p>Número: ${alias}</p>
-//                     <button id="btnInfo" type="button">Hecho</button>
-//                 </div>
-//             `;
-//                 mets.push(alias);
-//                 let latLng = {
-//                     lat: Number(latitud),
-//                     lng: Number(longitud)
-//                 }
-//                 mapa.mostrarPin(latLng, contenido, 1, barrioSeleccionado, name);
-//             }
-//         })
-//         //Guardar datos en localStorage
-//     localStorage.setItem(name, JSON.stringify(mets));
-
-// };

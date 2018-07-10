@@ -42,7 +42,7 @@ export class Mapa {
                     let numMet = e.target.parentElement.textContent.match(/\d{10}/)[0];
 
                     marker.setMap(null);
-                    borrarElemLocalStorage(name, alias, numMet)
+                    borrarElemLocalStorage(name, numMet)
 
 
                 })
@@ -65,7 +65,7 @@ export class Mapa {
                             <button id="btnInfo" type="button">Hecho</button>
                         </div>
                 `;
-                mets.push(alias);
+                mets.push(elem);
                 let latLng = {
                     lat: Number(latitud),
                     lng: Number(longitud)
@@ -89,8 +89,9 @@ function borrarElemLocalStorage(name, numMet) {
 
     let mets = JSON.parse(localStorage.getItem(name));
     mets.forEach((item, index) => {
-        if (item == numMet) {
-            mets.splice(index, 1);
+        if (item.alias == numMet) {
+            mets[index].hecho = true;
+            // mets.splice(index, 1);
         }
     })
     localStorage.setItem(name, JSON.stringify(mets));
