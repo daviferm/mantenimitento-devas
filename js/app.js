@@ -169,7 +169,7 @@ function cargarNumeroMets(name) {
             count++
         }
     })
-    return count;
+    return count + "/" + mets.length;
 
 }
 
