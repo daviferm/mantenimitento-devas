@@ -217,7 +217,7 @@ ul li:before {
     content: attr(data-mets);
     position: absolute;
     color: rgb(101, 235, 233);
-    font-size: .5em;
+    font-size: .4em;
     top: 4px;
     right: 40px;
     z-index: 400;

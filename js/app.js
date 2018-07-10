@@ -178,7 +178,7 @@ function ulSize() {
     let li = document.getElementsByTagName('li').length;
 
     if (activeUl) {
-        ul.style.width = '190px';
+        ul.style.width = '200px';
         ul.style.height = `${li*40}px`;
         activeUl = !activeUl;
     } else {
@@ -215,7 +215,7 @@ function cargarMapaGuardado(nameMap) {
         };
         let alias = elem.alias.substr(7);
         if (elem.hecho) {
-            opacidad = .6;
+            opacidad = .5;
         } else {
             opacidad = 1;
         }
