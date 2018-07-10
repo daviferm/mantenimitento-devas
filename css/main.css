@@ -208,7 +208,7 @@ ul li p {
 
 .cerrar {
     position: absolute;
-    left: 85%;
+    left: 90%;
     top: 4px;
     font-size: .7em;
 }
@@ -219,7 +219,7 @@ ul li:before {
     color: rgb(101, 235, 233);
     font-size: .4em;
     top: 4px;
-    right: 40px;
+    right: 35px;
     z-index: 400;
 }
 
