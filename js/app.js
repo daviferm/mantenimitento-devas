@@ -223,3 +223,24 @@ function cargarMapaGuardado(nameMap) {
         let pin = mapa.mostrarPin(latLng, contenido, opacidad, nameMap, alias);
     })
 }
+
+// Obtener posicion GPS
+let getPosicion = () => {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+            position = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+            console.log(position);
+
+            let latitud = position.lat;
+            let longitud = position.lng;
+
+        });
+
+    } else {
+        throw error = new Error('Necesitas habilitar GPS!');
+    }
+}
+getPosicion();
