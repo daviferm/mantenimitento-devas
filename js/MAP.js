@@ -15,6 +15,21 @@ export class Mapa {
         this.infoWindowActivo;
     }
 
+    mostrarPosicion(latLng) {
+        let marker = new google.maps.Marker({
+            position: latLng,
+            icon: {
+                path: google.maps.SymbolPath.CIRCLE,
+                scale: 10, //tamaño
+                strokeColor: '#f00', //color del borde
+                strokeWeight: 5, //grosor del borde
+                fillColor: '#00f', //color de relleno
+                fillOpacity: 1 // opacidad del relleno
+            },
+            map: this.mapa
+        })
+
+    }
     mostrarPin(latLng, contenido, opacidad, name, alias) {
         let marker = new google.maps.Marker({
             position: latLng,
@@ -52,6 +67,7 @@ export class Mapa {
         })
 
     }
+
     crearMapa(barrioSeleccionado, name) {
 
         let mets = [];
@@ -81,9 +97,28 @@ export class Mapa {
         // Agregar lista de parquímetros del mapa a localStorage
         localStorage.setItem(name, JSON.stringify(mets));
     }
+    getPosicion() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                position = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+                let latLng = {
+                    lat: position.lat,
+                    lng: position.lng
+                }
+                let miPosicion = this.mostrarPosicion(latLng);
 
+            });
 
+        } else {
+            throw error = new Error('Necesitas habilitar GPS!');
+        }
+    }
 }
+
+
 //Función para borrar los parkímetros de localStorage
 function borrarElemLocalStorage(name, numMet) {
 

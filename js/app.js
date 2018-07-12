@@ -62,7 +62,6 @@ async function mostrarMapa(e) {
 
             //Mostrar todos los parquímetros en el mapa 
             mapa.crearMapa(barrioSeleccionado, name);
-
             crearLi(name);
             cargarNumeroMapas();
         }
@@ -222,9 +221,10 @@ function cargarMapaGuardado(nameMap) {
 
         let pin = mapa.mostrarPin(latLng, contenido, opacidad, nameMap, alias);
     })
+    let miPosicion = mapa.getPosicion();
 }
-
 // Obtener posicion GPS
+let miPosicion = true;
 let getPosicion = () => {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -232,10 +232,14 @@ let getPosicion = () => {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
-            console.log(position);
+            let latLng = {
+                lat: position.lat,
+                lng: position.lng
+            }
+            let miPosicion = mapa.mostrarPosicion(latLng);
+            if (!miPosicion) {
 
-            let latitud = position.lat;
-            let longitud = position.lng;
+            }
 
         });
 
@@ -243,4 +247,6 @@ let getPosicion = () => {
         throw error = new Error('Necesitas habilitar GPS!');
     }
 }
-getPosicion();
+
+const locate = document.querySelector('.posicionGps');
+locate.addEventListener('click', getPosicion);

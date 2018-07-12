@@ -231,6 +231,7 @@ ul li:before {
     bottom: 30px;
     text-align: center;
     outline: none;
+    cursor: pointer;
 }
 
 .posicionGps ion-icon {
