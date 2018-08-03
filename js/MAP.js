@@ -16,6 +16,7 @@ export class Mapa {
     }
 
     mostrarPosicion(latLng) {
+
         let marker = new google.maps.Marker({
             position: latLng,
             icon: {
@@ -56,7 +57,9 @@ export class Mapa {
             document.getElementById('btnInfo').addEventListener('click', (e) => {
                     let numMet = e.target.parentElement.textContent.match(/\d{10}/)[0];
 
-                    marker.setMap(null);
+                    marker.setOptions({ opacity: .5 });
+                    infowindow.close();
+                    // marker.setMap(null);
                     borrarElemLocalStorage(name, numMet)
 
 
