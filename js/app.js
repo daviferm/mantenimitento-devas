@@ -50,14 +50,9 @@ async function mostrarMapa(e) {
 
         if (name) {
             await swal({ type: 'success', title: 'Tarea "' + name + '" guardada..' })
-            let park = baseDatos.find(item => {
-                return item.barrio.startsWith(barrioSeleccionado);
-            });
 
-            const latLng = {
-                lat: Number(park.latitud),
-                lng: Number(park.longitud)
-            };
+            const latLng = optenerCentro(barrioSeleccionado);
+
             const mapa = new Mapa(15, latLng);
 
             //Mostrar todos los parquímetros en el mapa 
@@ -186,16 +181,88 @@ function ulSize() {
         activeUl = !activeUl;
     }
 }
+
+//Optener cetro del mapa según el barrio
+function optenerCentro(barrio) {
+    let numBarrio = Number(barrio);
+    let centro;
+    switch (numBarrio) {
+        case 44:
+            centro = { lat: 40.436347, lng: -3.667389 };
+            break;
+        case 45:
+            centro = { lat: 40.432375, lng: -3.676183 };
+            break;
+        case 46:
+            centro = { lat: 40.433368, lng: -3.683588 };
+            break;
+        case 51:
+            centro = { lat: 40.445408, lng: -3.684342 };
+            break;
+        case 52:
+            centro = { lat: 40.443262, lng: -3.669103 };
+            break;
+        case 53:
+            centro = { lat: 40.448204, lng: -3.67265 };
+            break;
+        case 54:
+            centro = { lat: 40.455497, lng: -3.677462 };
+            break;
+        case 55:
+            centro = { lat: 40.461893, lng: -3.679066 };
+            break;
+        case 56:
+            centro = { lat: 40.472714, lng: -3.677789 };
+            break;
+        case 61:
+            centro = { lat: 40.451753, lng: -3.707646 };
+            break;
+        case 62:
+            centro = { lat: 40.452326, lng: -3.696489 };
+            break;
+        case 63:
+            centro = { lat: 40.459081, lng: -3.693029 };
+            break;
+        case 64:
+            centro = { lat: 40.469211, lng: -3.69408 };
+            break;
+        case 65:
+            centro = { lat: 40.466564, lng: -3.702468 };
+            break;
+        case 66:
+            centro = { lat: 40.459403, lng: -3.704318 };
+            break;
+        case 75:
+            centro = { lat: 40.441979, lng: -3.698296 };
+            break;
+        case 76:
+            centro = { lat: 40.441833, lng: -3.71095 };
+            break;
+        case 84:
+            centro = { lat: 40.476389, lng: -3.708886 };
+            break;
+        case 85:
+            centro = { lat: 40.48158, lng: -3.697391 };
+            break;
+        case 93:
+            centro = { lat: 40.449879, lng: -3.714955 };
+            break;
+    }
+
+    return centro;
+}
+
 //Cargar mapa guardado al cliquear en un enlace
 function cargarMapaGuardado(nameMap) {
 
     //Obtener el mapa de localStorage
     let mapaGuardado = JSON.parse(localStorage.getItem(nameMap));
 
-    const latLng = {
-        lat: Number(mapaGuardado[0].latitud),
-        lng: Number(mapaGuardado[0].longitud)
-    };
+    //Obtener el número del barrio del mapa seleccionado
+    let barrio = Number(mapaGuardado[0].barrio.substr(0, 2));
+
+    //Obtener el centro del mapa
+    const latLng = optenerCentro(barrio);
 
     const mapa = new Mapa(15, latLng);
     let opacidad;
