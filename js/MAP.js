@@ -1,4 +1,5 @@
 import { baseDatos } from './baseDatos.js';
+import { baseDatosMets } from './baseDatosMet.js';
 
 export class Mapa {
     constructor(zoom, latLng) {
@@ -74,7 +75,7 @@ export class Mapa {
     crearMapa(barrioSeleccionado, name) {
 
         let mets = [];
-        baseDatos.forEach(elem => {
+        baseDatosMets.forEach(elem => {
             if (elem.barrio.startsWith(barrioSeleccionado)) {
 
                 let { latitud, longitud, alias } = elem;
