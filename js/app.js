@@ -1,5 +1,7 @@
 import { Mapa } from './MAP.js';
 import { baseDatos } from './baseDatos.js';
+import { baseDatosMets } from './baseDatosMet.js';
+
 
 
 //Variables globales
@@ -287,6 +289,7 @@ function cargarMapaGuardado(nameMap) {
         }
 
         let pin = mapa.mostrarPin(latLng, contenido, opacidad, nameMap, alias);
+        let cont = document.querySelector('.infoPark');
     })
     let miPosicion = mapa.getPosicion();
 }

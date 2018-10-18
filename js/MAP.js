@@ -45,8 +45,9 @@ export class Mapa {
         let infowindow = new google.maps.InfoWindow({
             content: contenido
         });
+
         // Mostrar InfoWindow al hace click
-        marker.addListener('click', () => {
+        marker.addListener('click', (e) => {
             // Cerrar infoWindowActivo
             if (this.infoWindowActivo) {
                 this.infoWindowActivo.close();
@@ -55,7 +56,10 @@ export class Mapa {
             infowindow.open(this.mapa, marker);
 
             // Añadir un evento click al boton del infoWindow para marcarlo con hecho
-            document.getElementById('btnInfo').addEventListener('click', (e) => {
+            setTimeout(function() {
+
+                let boton = document.getElementById('btnInfo');
+                boton.addEventListener('click', (e) => {
                     let numMet = e.target.parentElement.textContent.match(/\d{10}/)[0];
 
                     marker.setOptions({ opacity: .5 });
@@ -65,7 +69,9 @@ export class Mapa {
 
 
                 })
-                //Asignar activo
+            }, 1000);
+
+            //Asignar activo
             this.infoWindowActivo = infowindow;
 
         })
