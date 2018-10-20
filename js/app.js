@@ -2,6 +2,40 @@ import { Mapa } from './MAP.js';
 import { baseDatos } from './baseDatos.js';
 import { baseDatosMets } from './baseDatosMet.js';
 
+function cargarApiGoogle() {
+    google.charts.load('current', {
+        'packages': ['corechart', 'table', 'map']
+    });
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.charts.setOnLoadCallback(initialize);
+}
+//Constante para establecer el punto de partida del primer mapa que se muestra
+const latLngInicio = { lat: 40.459426, lng: -3.695619 };
+
+let latLng = { lat: 40.459426, lng: -3.695619 };
+let zoom = 12;
+var options = {
+    zoom: zoom,
+    zoomControl: false,
+    mapTypeControl: false,
+    scaleControl: false,
+    streetViewControl: false,
+    rotateControl: false,
+    fullscreenControl: false,
+    center: latLng,
+    mapTypeControlOptions: {
+        position: google.maps.ControlPosition.BOTTOM_LEFT
+    },
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+};
+
+function initialize() {
+    let mapa = new Mapa(zoom, latLng);
+    // map = new google.maps.Map(document.getElementById('mapa'), options);
+
+}
+
+cargarApiGoogle();
 
 
 //Variables globales
@@ -22,10 +56,9 @@ for (let i = 0; i < listaBarrios.length; i++) {
     selectBarrio.appendChild(option);
 };
 
-//Constante para establecer el punto de partida del primer mapa que se muestra
-const latLngInicio = { lat: 40.413914, lng: -3.679218 };
 
-const mapa = new Mapa(10, latLngInicio);
+
+// const mapa = new Mapa(10, latLngInicio);
 
 cargarMapasLocalStorage();
 
@@ -54,6 +87,7 @@ async function mostrarMapa(e) {
             await swal({ type: 'success', title: 'Tarea "' + name + '" guardada..' })
 
             const latLng = optenerCentro(barrioSeleccionado);
+            console.log(latLng);
 
             const mapa = new Mapa(15, latLng);
 
@@ -266,7 +300,7 @@ function cargarMapaGuardado(nameMap) {
     //Obtener el centro del mapa
     const latLng = optenerCentro(barrio);
 
-    const mapa = new Mapa(15, latLng);
+    const mapa = new Mapa(15, latLng, options);
     let opacidad;
     mapaGuardado.forEach((elem) => {
 
@@ -293,9 +327,12 @@ function cargarMapaGuardado(nameMap) {
     })
     let miPosicion = mapa.getPosicion();
 }
+
+
 // Obtener posicion GPS
 let miPosicion = true;
 let getPosicion = () => {
+    console.log('getPosicion');
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
             position = {
@@ -306,6 +343,7 @@ let getPosicion = () => {
                 lat: position.lat,
                 lng: position.lng
             }
+            console.log(latLng);
             let miPosicion = mapa.mostrarPosicion(latLng);
             if (!miPosicion) {
 
@@ -317,6 +355,7 @@ let getPosicion = () => {
         throw error = new Error('Necesitas habilitar GPS!');
     }
 }
+
 
 const locate = document.querySelector('.posicionGps');
 locate.addEventListener('click', getPosicion);

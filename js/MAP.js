@@ -2,15 +2,32 @@ import { baseDatos } from './baseDatos.js';
 import { baseDatosMets } from './baseDatosMet.js';
 
 export class Mapa {
+    // constructor(zoom, latLng)
+    // {
+    //     center: latLng,
+    //     fullscreenControl: false,
+    //     rotateControl: false,
+    //     mapTypeControl: false,
+    //     streetViewControl: false,
+    //     scaleControl: false,
+    //     zoomControl: false,
+    //     zoom: zoom
+    // }
     constructor(zoom, latLng) {
         //Inicializar y obtenet la propiedad de mapa
         this.mapa = new google.maps.Map(document.getElementById('map'), {
-            center: latLng,
-            fullscreenControl: false,
-            mapTypeControl: false,
-            streetViewControl: false,
+            zoom: zoom,
             zoomControl: false,
-            zoom: zoom
+            mapTypeControl: false,
+            scaleControl: false,
+            streetViewControl: false,
+            rotateControl: false,
+            fullscreenControl: false,
+            center: latLng,
+            mapTypeControlOptions: {
+                position: google.maps.ControlPosition.BOTTOM_LEFT
+            },
+            mapTypeId: google.maps.MapTypeId.ROADMAP
         });
 
         this.infoWindowActivo;
