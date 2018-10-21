@@ -10,6 +10,7 @@ export class Mapa {
             mapTypeControl: false,
             streetViewControl: false,
             zoomControl: false,
+            gestureHandling: "greedy",
             zoom: zoom
         });
 
