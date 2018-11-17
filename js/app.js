@@ -3,7 +3,6 @@ import { baseDatos } from './baseDatos.js';
 import { baseDatosMets } from './baseDatosMet.js';
 
 
-
 //Variables globales
 const selectBarrio = document.getElementById('barrio');
 

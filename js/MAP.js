@@ -1,5 +1,5 @@
-import { baseDatos } from './baseDatos.js';
-import { baseDatosMets } from './baseDatosMet.js';
+// import { baseDatos } from './baseDatos.js';
+// import { baseDatosMets } from './baseDatosMet.js';
 
 export class Mapa {
     constructor(zoom, latLng) {
@@ -10,29 +10,13 @@ export class Mapa {
             mapTypeControl: false,
             streetViewControl: false,
             zoomControl: false,
-            gestureHandling: "greedy",
+            gestureHandling: "greedy", //mover el mapa con un dedo
             zoom: zoom
         });
 
         this.infoWindowActivo;
     }
 
-    mostrarPosicion(latLng) {
-
-        let marker = new google.maps.Marker({
-            position: latLng,
-            icon: {
-                path: google.maps.SymbolPath.CIRCLE,
-                scale: 10, //tamaño
-                strokeColor: '#f00', //color del borde
-                strokeWeight: 5, //grosor del borde
-                fillColor: '#00f', //color de relleno
-                fillOpacity: 1 // opacidad del relleno
-            },
-            map: this.mapa
-        })
-
-    }
     mostrarPin(latLng, contenido, opacidad, name, alias) {
         let marker = new google.maps.Marker({
             position: latLng,
@@ -79,9 +63,18 @@ export class Mapa {
 
     }
 
-    crearMapa(barrioSeleccionado, name) {
+    async crearMapa(barrioSeleccionado, name) {
 
         let mets = [];
+
+        let data = await fetch('../data/data.json')
+            .then(async function(res) {
+                let respuesta = await res.json();
+                return respuesta;
+            })
+
+        let baseDatosMets = data.parkimetros;
+
         baseDatosMets.forEach(elem => {
             if (elem.barrio.startsWith(barrioSeleccionado)) {
 
@@ -127,7 +120,25 @@ export class Mapa {
             throw error = new Error('Necesitas habilitar GPS!');
         }
     }
+
+    mostrarPosicion(latLng) {
+
+        let marker = new google.maps.Marker({
+            position: latLng,
+            icon: {
+                path: google.maps.SymbolPath.CIRCLE,
+                scale: 10, //tamaño
+                strokeColor: '#f00', //color del borde
+                strokeWeight: 5, //grosor del borde
+                fillColor: '#00f', //color de relleno
+                fillOpacity: 1 // opacidad del relleno
+            },
+            map: this.mapa
+        })
+
+    }
 }
+
 
 
 //Función para borrar los parkímetros de localStorage
