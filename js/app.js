@@ -270,25 +270,18 @@ function cargarMapaGuardado(nameMap) {
     mapaGuardado.forEach((elem) => {
 
         let contenido = `
-        <div class="infoPark">
-            <p>Número: ${elem.alias}</p>
-            <div class="buttons">
-                <div class="divBtnInfo">
-                    <button id="btnInfo" type="button">Tarea realizada</button>
-                </div>
-                <div class="divBtnMap">
-                    <button id="btnMap" type="button"></button>
+            <div class="infoPark">
+                <p>Número: ${elem.alias}</p>
+                <div class="buttons">
+                    <div class="divBtnInfo">
+                        <button id="btnInfo" type="button">Tarea realizada</button>
+                    </div>
+                    <div class="divBtnMap">
+                        <button id="btnMap" type="button"></button>
+                    </div>
                 </div>
             </div>
-        </div>
         `
-
-        // let contenido = `
-        //     <div class="infoPark">
-        //         <p>Número: ${elem.alias}</p>
-        //         <button id="btnInfo" type="button">Hecho</button>
-        //     </div>
-        // `;
 
         const latLng = {
             lat: Number(elem.latitud),

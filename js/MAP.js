@@ -44,6 +44,8 @@ export class Mapa {
             setTimeout(function() {
 
                 let boton = document.getElementById('btnInfo');
+                let btnMap = document.getElementById('btnMap');
+
                 boton.addEventListener('click', (e) => {
                     let numMet = e.target.parentElement.parentElement.parentElement.textContent.match(/\d{10}/)[0];
 
@@ -52,6 +54,11 @@ export class Mapa {
                     // marker.setMap(null);
                     borrarElemLocalStorage(name, numMet)
 
+                })
+
+                btnMap.addEventListener('click', () => {
+
+                    window.open("https://www.google.es/maps/dir/mi+ubicacion/" + latLng.lat + "," + latLng.lng + "/");
 
                 })
             }, 1000);
@@ -80,11 +87,25 @@ export class Mapa {
 
                 let { latitud, longitud, alias } = elem;
                 let contenido = `
-                        <div class="infoPark">
-                            <p>Número: ${alias}</p>
-                            <button id="btnInfo" type="button">Hecho</button>
+                <div class="infoPark">
+                    <p>Número: ${elem.alias}</p>
+                    <div class="buttons">
+                        <div class="divBtnInfo">
+                            <button id="btnInfo" type="button">Tarea realizada</button>
                         </div>
-                `;
+                        <div class="divBtnMap">
+                            <button id="btnMap" type="button"></button>
+                        </div>
+                    </div>
+                </div>
+            `
+
+                // let contenido = `
+                //         <div class="infoPark">
+                //             <p>Número: ${alias}</p>
+                //             <button id="btnInfo" type="button">Hecho</button>
+                //         </div>
+                // `;
                 mets.push(elem);
                 let latLng = {
                     lat: Number(latitud),
