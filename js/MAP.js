@@ -45,7 +45,7 @@ export class Mapa {
 
                 let boton = document.getElementById('btnInfo');
                 boton.addEventListener('click', (e) => {
-                    let numMet = e.target.parentElement.textContent.match(/\d{10}/)[0];
+                    let numMet = e.target.parentElement.parentElement.parentElement.textContent.match(/\d{10}/)[0];
 
                     marker.setOptions({ opacity: .5 });
                     infowindow.close();
