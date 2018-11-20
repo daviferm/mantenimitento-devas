@@ -161,7 +161,7 @@ function cargarNumeroMets(name) {
     let count = 0;
     mets.forEach(function(el) {
         if (!el.hecho) {
-            count++
+            count++;
         }
     })
     return count + "/" + mets.length;
