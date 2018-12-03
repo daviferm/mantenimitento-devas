@@ -24,6 +24,7 @@ export class Mapa {
             opacity: opacidad,
             animation: google.maps.Animation.DROP,
             label: alias,
+            icon: '../img/icono-position.png',
             title: 'Parkímetro'
         });
 
@@ -99,20 +100,15 @@ export class Mapa {
                         </div>
                     </div>
                 `
+                alias = elem.alias.substr(7);
 
-                // let contenido = `
-                //         <div class="infoPark">
-                //             <p>Número: ${alias}</p>
-                //             <button id="btnInfo" type="button">Hecho</button>
-                //         </div>
-                // `;
                 mets.push(elem);
                 let latLng = {
                     lat: Number(latitud),
                     lng: Number(longitud)
                 }
 
-                this.mostrarPin(latLng, contenido, 1, name);
+                this.mostrarPin(latLng, contenido, 1, name, alias);
             }
         })
 

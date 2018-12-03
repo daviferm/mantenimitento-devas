@@ -3,6 +3,10 @@ import { baseDatos } from './baseDatos.js';
 import { baseDatosMets } from './baseDatosMet.js';
 
 
+//Poner el scroll al principio de la página al recargar
+document.addEventListener('DOMContentLoaded', function() {
+    window.scrollBy(0, 0);
+});
 //Variables globales
 const selectBarrio = document.getElementById('barrio');
 
@@ -58,8 +62,11 @@ async function mostrarMapa(e) {
 
             //Mostrar todos los parquímetros en el mapa 
             mapa.crearMapa(barrioSeleccionado, name);
-            crearLi(name);
-            cargarNumeroMapas();
+            setTimeout(function() {
+                crearLi(name);
+                cargarNumeroMapas();
+
+            }, 100);
         }
     }
 }
@@ -72,6 +79,7 @@ ul.addEventListener('click', (e) => {
         let texto = e.target.textContent;
 
         cargarMapaGuardado(texto);
+        ulSize();
     }
     if (e.target.parentElement.className == 'cerrar') {
 
@@ -159,6 +167,7 @@ function cargarNumeroMapas() {
 function cargarNumeroMets(name) {
     let mets = JSON.parse(localStorage.getItem(name));
     let count = 0;
+
     mets.forEach(function(el) {
         if (!el.hecho) {
             count++;
