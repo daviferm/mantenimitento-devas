@@ -76,10 +76,10 @@ export class Mapa {
         let mets = [];
 
         let data = await fetch('../data/data.json')
-            .then(async function(res) {
-                let respuesta = await res.json();
+            .then(function(res) {
+                let respuesta = res.json();
                 return respuesta;
-            })
+            });
 
         let baseDatosMets = data.parkimetros;
 
