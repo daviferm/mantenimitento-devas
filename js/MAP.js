@@ -24,7 +24,7 @@ export class Mapa {
             opacity: opacidad,
             animation: google.maps.Animation.DROP,
             label: alias,
-            icon: '../img/icono-position.png',
+            icon: './img/icono-position.png',
             title: 'Parkímetro'
         });
 
