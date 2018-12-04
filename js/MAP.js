@@ -79,10 +79,8 @@ export class Mapa {
             .then(function(res) {
                 let respuesta = res.json();
                 return respuesta;
-            })
-            .catch(function(err) {
-                console.log(err);
-            })
+            });
+
 
         let baseDatosMets = data.parkimetros;
 
