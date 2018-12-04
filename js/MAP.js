@@ -99,7 +99,7 @@ export class Mapa {
                             </div>
                         </div>
                     </div>
-                `
+                `;
                 alias = elem.alias.substr(7);
 
                 mets.push(elem);

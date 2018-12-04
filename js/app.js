@@ -61,12 +61,12 @@ async function mostrarMapa(e) {
             const mapa = new Mapa(15, latLng);
 
             //Mostrar todos los parquímetros en el mapa 
-            mapa.crearMapa(barrioSeleccionado, name);
-            setTimeout(function() {
-                crearLi(name);
-                cargarNumeroMapas();
 
-            }, 100);
+            let newMapa = await mapa.crearMapa(barrioSeleccionado, name);
+
+            crearLi(name);
+
+            cargarNumeroMapas();
         }
     }
 }
