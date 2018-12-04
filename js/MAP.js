@@ -75,7 +75,7 @@ export class Mapa {
 
         let mets = [];
 
-        let data = await fetch('./data/data.json')
+        let data = await fetch('../data/data.json')
             .then(async function(res) {
                 let respuesta = await res.json();
                 return respuesta;
