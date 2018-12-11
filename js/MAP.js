@@ -88,6 +88,7 @@ export class Mapa {
             if (elem.barrio.startsWith(barrioSeleccionado)) {
 
                 let { latitud, longitud, alias } = elem;
+
                 let contenido = `
                     <div class="infoPark">
                         <p>Número: ${elem.alias}</p>
@@ -109,7 +110,10 @@ export class Mapa {
                     lng: Number(longitud)
                 }
 
-                this.mostrarPin(latLng, contenido, 1, name, alias);
+                if (elem.estado != 'desmontada') {
+
+                    this.mostrarPin(latLng, contenido, 1, name, alias);
+                }
             }
         })
 

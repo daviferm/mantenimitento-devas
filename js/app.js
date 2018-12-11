@@ -306,7 +306,10 @@ function cargarMapaGuardado(nameMap) {
             opacidad = 1;
         }
 
-        let pin = mapa.mostrarPin(latLng, contenido, opacidad, nameMap, alias);
+        if (elem.estado != 'desmontada') {
+
+            mapa.mostrarPin(latLng, contenido, opacidad, nameMap, alias);
+        }
         let cont = document.querySelector('.infoPark');
     })
     let miPosicion = mapa.getPosicion();
