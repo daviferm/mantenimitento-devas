@@ -61,6 +61,7 @@ export class Mapa {
 
                     window.open("https://www.google.es/maps/dir/mi+ubicacion/" + latLng.lat + "," + latLng.lng + "/");
 
+
                 })
             }, 1000);
 
@@ -125,18 +126,24 @@ export class Mapa {
     }
     getPosicion() {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition((position) => {
-                position = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                };
-                let latLng = {
-                    lat: position.lat,
-                    lng: position.lng
-                }
-                let miPosicion = this.mostrarPosicion(latLng);
+            let intermalo = setInterval(() => {
 
-            });
+                navigator.geolocation.getCurrentPosition((position) => {
+                    position = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    let latLng = {
+                        lat: position.lat,
+                        lng: position.lng
+                    }
+                    let miPosicion = this.mostrarPosicion(latLng);
+
+                    setTimeout(function() {
+                        miPosicion.setMap(null);
+                    }, 1950);
+                });
+            }, 2000);
 
         } else {
             throw error = new Error('Necesitas habilitar GPS!');
@@ -156,7 +163,9 @@ export class Mapa {
                 fillOpacity: 1 // opacidad del relleno
             },
             map: this.mapa
-        })
+        });
+
+        return marker;
 
     }
 }

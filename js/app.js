@@ -313,11 +313,14 @@ function cargarMapaGuardado(nameMap) {
         let cont = document.querySelector('.infoPark');
     })
     let miPosicion = mapa.getPosicion();
+
+
 }
 // Obtener posicion GPS
 let miPosicion = true;
 let getPosicion = () => {
     if (navigator.geolocation) {
+
         navigator.geolocation.getCurrentPosition((position) => {
             position = {
                 lat: position.coords.latitude,
@@ -327,10 +330,8 @@ let getPosicion = () => {
                 lat: position.lat,
                 lng: position.lng
             }
-            let miPosicion = mapa.mostrarPosicion(latLng);
-            if (!miPosicion) {
+            miPosicion = mapa.mostrarPosicion(latLng);
 
-            }
 
         });
 
