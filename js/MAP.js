@@ -141,9 +141,9 @@ export class Mapa {
 
                     setTimeout(function() {
                         miPosicion.setMap(null);
-                    }, 1950);
+                    }, 199);
                 });
-            }, 2000);
+            }, 200);
 
         } else {
             throw error = new Error('Necesitas habilitar GPS!');
