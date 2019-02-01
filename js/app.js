@@ -5,7 +5,7 @@ import { baseDatosMets } from './baseDatosMet.js';
 
 //Poner el scroll al principio de la página al recargar
 document.addEventListener('DOMContentLoaded', function() {
-    window.scrollBy(0, 0);
+    window.scrollBy(0, -window.innerHeight);
 });
 //Variables globales
 const selectBarrio = document.getElementById('barrio');
@@ -63,6 +63,7 @@ async function mostrarMapa(e) {
             //Mostrar todos los parquímetros en el mapa 
 
             mapa.crearMapa(barrioSeleccionado, name);
+            window.scrollBy(0, -window.innerHeight);
 
             setTimeout(function() {
                 crearLi(name);
@@ -267,6 +268,7 @@ function optenerCentro(barrio) {
 
 //Cargar mapa guardado al cliquear en un enlace
 function cargarMapaGuardado(nameMap) {
+    window.scrollBy(0, -window.innerHeight);
 
     //Obtener el mapa de localStorage
     let mapaGuardado = JSON.parse(localStorage.getItem(nameMap));
@@ -331,7 +333,6 @@ let getPosicion = () => {
                 lng: position.lng
             }
             miPosicion = mapa.mostrarPosicion(latLng);
-
 
         });
 
