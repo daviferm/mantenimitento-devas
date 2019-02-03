@@ -66,7 +66,7 @@ async function mostrarMapa(e) {
             window.scrollBy(0, -window.innerHeight);
 
             setTimeout(function() {
-                crearLi(name);
+                crearLi(name, barrioSeleccionado);
 
                 cargarNumeroMapas();
             }, 400);
@@ -186,8 +186,8 @@ function ulSize() {
     let li = document.getElementsByTagName('li').length;
 
     if (activeUl) {
-        ul.style.width = '200px';
-        ul.style.height = `${li*40}px`;
+        ul.style.width = '280px';
+        ul.style.height = `${li*50}px`;
         activeUl = !activeUl;
     } else {
         ul.style.width = '0px';

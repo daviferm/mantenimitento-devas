@@ -160,7 +160,7 @@ ul {
     position: absolute;
     bottom: 100%;
     right: 100%;
-    margin-bottom: -5px;
+    margin-bottom: -25px;
     width: 0px;
     height: 0px;
     transition-duration: .3s;
@@ -191,9 +191,9 @@ ul li p {
 
 .cerrar {
     position: absolute;
-    left: 90%;
-    top: 4px;
-    font-size: .7em;
+    left: 92%;
+    top: 2px;
+    font-size: .8em;
 }
 
 ul li:before {

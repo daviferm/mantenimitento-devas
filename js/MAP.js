@@ -141,7 +141,7 @@ export class Mapa {
 
                     setTimeout(function() {
                         miPosicion.setMap(null);
-                    }, 900);
+                    }, 800);
                 });
             }, 1000);
 
