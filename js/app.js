@@ -186,7 +186,7 @@ function ulSize() {
     let li = document.getElementsByTagName('li').length;
 
     if (activeUl) {
-        ul.style.width = '280px';
+        ul.style.width = '260px';
         ul.style.height = `${li*50}px`;
         activeUl = !activeUl;
     } else {
