@@ -7,6 +7,9 @@ body {
     /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #904e95, #e96443);
     font-family: 'Roboto', sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    padding-bottom: 200px;
 }
 
 .header {
@@ -81,13 +84,13 @@ body {
 }
 
 body .main {
-    background-image: url("../img/torresMadrid.png");
+    /* background-image: url("../img/torresMadrid.png"); */
     background-repeat: repeat-y;
     background-position: top center;
     background-size: 100%;
     height: 100vh;
     width: 100%;
-    z-index: -10;
+    z-index: -15;
     display: flex;
     flex-direction: column;
     align-content: flex-start;
@@ -112,7 +115,7 @@ body .main {
 .mapSave {
     position: fixed;
     right: 25px;
-    bottom: 10px;
+    bottom: 15px;
     font-size: 2em;
     margin: 0px;
     padding: 0px;
@@ -122,7 +125,7 @@ body .main {
 .mapSave:before {
     content: "\f1d3";
     font-family: "Ionicons";
-    font-size: 1.15em;
+    font-size: 1.2em;
     position: relative;
     border-radius: 50px;
     padding: 2px 4px;
@@ -134,9 +137,9 @@ body .main {
     content: attr(data-count);
     position: absolute;
     color: beige;
-    font-size: .5em;
-    top: 16px;
-    left: 120%;
+    font-size: .4em;
+    top: 20px;
+    left: 45px;
 }
 
 .mapSave .ul {
@@ -153,28 +156,127 @@ body .main {
     background-color: rgba(68, 155, 232, 0.8);
 }
 
+.swal2-container {
+    z-index: 100000;
+}
+
+.listaTareas {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    margin-top: 80px;
+    padding-top: 14px;
+    background: rgba(94, 90, 84, .8);
+    transition-duration: .4s;
+    z-index: 10;
+    overflow: scroll;
+}
+
+.listaTareas footer {
+    position: relative;
+    width: 100%;
+    height: 140px;
+    background: transparent;
+    bottom: 0%;
+    z-index: -20;
+}
+
+.listaTareas .cerrarLista {
+    position: relative;
+    top: 0px;
+    width: 100%;
+    height: 30px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+}
+
+.listaTareas .cerrarLista p {
+    margin: 0px 14px;
+    font-size: 1.2em;
+    padding: .3em;
+    border-radius: 50%;
+    width: 15px;
+    background: rgba(179, 78, 78, .8);
+    color: white;
+}
+
+.listaTareas ul {
+    position: relative;
+    list-style: none;
+    margin: 0px;
+    width: 98%;
+    margin-left: -38px;
+}
+
+.listaTareas ul li {
+    position: relative;
+    height: 100%;
+}
+
+.listaTareas ul li .link {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    width: 100%;
+    height: 45px;
+    margin-top: 5px;
+    border-radius: 8px;
+    padding: 0px 0px;
+    background-color: rgb(75, 91, 136);
+    /* background: linear-gradient(to top, rgb(100, 114, 150) 30%, rgb(56, 103, 88) 100%); */
+    cursor: pointer;
+    vertical-align: text-bottom;
+    /* animation: .6s mostrar 1; */
+}
+
+.listaTareas ul li .link .name {
+    width: 60%;
+    color: whitesmoke;
+}
+
+.listaTareas ul li .link .barrio {
+    width: 25%;
+    margin-top: 5px;
+    color: whitesmoke;
+}
+
+.listaTareas ul li .link .cerrar {
+    width: 15%;
+    font-size: 1.6em;
+    padding-top: 8px;
+    color: whitesmoke;
+}
+
+
+/*
 ul {
     list-style: none;
     font-size: 1em;
     overflow: hidden;
     position: absolute;
-    bottom: 100%;
-    right: 100%;
-    margin-bottom: -25px;
-    width: 0px;
-    height: 0px;
+    top: 0px;
+    width: 100%;
+    height: auto;
     transition-duration: .3s;
 }
 
 ul li {
     position: relative;
     margin-left: -35px;
-    padding: 8px;
+    padding: 10px;
     color: white;
     border: 1px solid white;
     border-radius: 8px;
     background-color: rgba(0, 0, 0, .6);
     cursor: pointer;
+    z-index: 1000;
 }
 
 ul li .link {
@@ -193,33 +295,37 @@ ul li p {
     position: absolute;
     left: 92%;
     top: 2px;
-    font-size: .8em;
-}
+    font-size: .9em;
+}*/
 
 ul li:before {
     content: attr(data-mets);
     position: absolute;
     color: rgb(101, 235, 233);
-    font-size: .4em;
+    font-size: .8em;
     top: 4px;
-    right: 35px;
+    right: 80px;
     z-index: 400;
 }
 
 .posicionGps {
     position: fixed;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     left: 35px;
-    bottom: 30px;
+    bottom: 40px;
+    border: 1px solid black;
+    border-radius: 50%;
     text-align: center;
     outline: none;
     cursor: pointer;
 }
 
 .posicionGps ion-icon {
-    font-size: 2em;
-    margin-top: 5px;
+    font-size: 1.5em;
+    margin-top: 2px;
+    margin-left: 2px;
+    transform: rotate(45deg);
 }
 
 .label {

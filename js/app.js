@@ -12,6 +12,8 @@ const selectBarrio = document.getElementById('barrio');
 
 const icon = document.querySelector('.ul ion-icon');
 const ul = document.querySelector('#ul');
+const cerrarLi = document.querySelector('.cerrarLista');
+const lista = document.querySelector('.listaTareas');
 
 //Llenamos el listado de barrios
 const barriosHTML = ["44 Guindalera", "45 Lista", "46 Castellana", "51 El Viso", "52 Prosperidad", "53 Ciudad Jardín", "54 Hispanoamérica", "55 Nueva España", "56 Castilla", "61 Bellas Vistas", "62 Cuatro Caminos", "63 Castillejos", "64 Almenara", "65 Valdeacederas", "66 Berruguete", "75 Rios Rosas", "76 Vallehermoso", "84 Pilar", "85 La Paz", "93 Ciudad Universitaria"];
@@ -74,6 +76,12 @@ async function mostrarMapa(e) {
         }
     }
 }
+
+cerrarLi.addEventListener('click', function() {
+
+    lista.style.transform = 'translateY(110%)';
+})
+
 let activeUl = true;
 icon.addEventListener('click', ulSize);
 ul.addEventListener('click', (e) => {
@@ -83,7 +91,8 @@ ul.addEventListener('click', (e) => {
         let texto = e.target.textContent;
 
         cargarMapaGuardado(texto);
-        ulSize();
+        lista.style.transform = 'translateY(110%)';
+        // ulSize();
     }
     if (e.target.parentElement.className == 'cerrar') {
 
@@ -121,7 +130,7 @@ ul.addEventListener('click', (e) => {
                 //la lista de enlaces al borrar uno
                 activeUl = true;
                 //Actualizar tamaño de la lista
-                ulSize();
+                // ulSize();
                 cargarNumeroMapas();
             }
         })
@@ -132,16 +141,31 @@ ul.addEventListener('click', (e) => {
 
 //Crear un enlace para el mapa
 function crearLi(name) {
+
+    //Obtener el mapa de localStorage
+    let mapaGuardado = JSON.parse(localStorage.getItem(name));
+
+    //Obtener el número del barrio del mapa seleccionado
+    let barrio = Number(mapaGuardado[0].barrio.substr(0, 2));
+
     let html;
     let li = document.createElement('li');
-    html = `<div class="link">
-                <div>
+    html = `
+            <div class="link">
+                <div class="name">
                     <p class="enlace">${name}</p>
                 </div>
-                <div class="cerrar">
-                    <span>x</span>
+                <div class="barrio">
+                    <div>
+                        <p>Barrio: <strong> ${barrio} </strong></p>
+                    </div>
                 </div>
-            </div>`;
+                <div class="cerrar">
+                    <ion-icon name="trash"></ion-icon>
+                </div>
+            </div>
+
+            `;
     li.innerHTML = html;
     ul.appendChild(li);
     const numMets = cargarNumeroMets(name);
@@ -185,15 +209,17 @@ function cargarNumeroMets(name) {
 function ulSize() {
     let li = document.getElementsByTagName('li').length;
 
-    if (activeUl) {
-        ul.style.width = '260px';
-        ul.style.height = `${li*50}px`;
-        activeUl = !activeUl;
-    } else {
-        ul.style.width = '0px';
-        ul.style.height = '0px';
-        activeUl = !activeUl;
-    }
+    lista.style.transform = 'translateY(0%)';
+
+    // if (activeUl) {
+    //     ul.style.width = '250px';
+    //     ul.style.height = `${li*50}px`;
+    //     activeUl = !activeUl;
+    // } else {
+    //     ul.style.width = '0px';
+    //     ul.style.height = '0px';
+    //     activeUl = !activeUl;
+    // }
 }
 
 //Optener cetro del mapa según el barrio
@@ -275,6 +301,8 @@ function cargarMapaGuardado(nameMap) {
 
     //Obtener el número del barrio del mapa seleccionado
     let barrio = Number(mapaGuardado[0].barrio.substr(0, 2));
+
+    console.log(barrio);
 
     //Obtener el centro del mapa
     const latLng = optenerCentro(barrio);
