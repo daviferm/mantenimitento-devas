@@ -93,10 +93,6 @@ body main {
 }
 
 body .main {
-    /* background-image: url("../img/torresMadrid.png");
-    background-repeat: repeat-y;
-    background-position: top center;
-    background-size: 100%; */
     height: 100%;
     width: 100%;
     z-index: -15;
@@ -124,7 +120,7 @@ body .main {
 .mapSave {
     position: fixed;
     right: 25px;
-    bottom: 15px;
+    bottom: 18px;
     font-size: 2em;
     margin: 0px;
     padding: 0px;
@@ -139,7 +135,7 @@ body .main {
     border-radius: 50px;
     padding: 2px 4px;
     top: 5px;
-    left: 90%;
+    left: 70%;
 }
 
 .mapSave:after {
@@ -148,7 +144,7 @@ body .main {
     color: beige;
     font-size: .4em;
     top: 20px;
-    left: 45px;
+    left: 104%;
 }
 
 .mapSave .ul {
@@ -176,7 +172,9 @@ body .main {
     height: 100%;
     margin: 0px;
     padding: 0px;
-    background: rgba(94, 90, 84, .8);
+    background: -webkit-linear-gradient(to right, #904e95, #e96443);
+    background: linear-gradient(to right, #904e95, #e96443);
+    background: rgba(78, 101, 85, 0.6);
     transition-duration: .4s;
     z-index: 10;
     overflow: scroll;
@@ -213,17 +211,6 @@ body .main {
     border-radius: 5px;
     transform: rotate(-45deg) translateY(-12px);
 }
-
-
-/* .listaTareas .cerrarLista p {
-    margin: 0px 14px;
-    font-size: 1.2em;
-    padding: .3em;
-    border-radius: 50%;
-    width: 20px;
-    background: rgba(179, 78, 78, .8);
-    color: white;
-} */
 
 .listaTareas ul {
     position: relative;
@@ -277,50 +264,6 @@ body .main {
     color: rgb(196, 182, 182);
 }
 
-
-/*
-ul {
-    list-style: none;
-    font-size: 1em;
-    overflow: hidden;
-    position: absolute;
-    top: 0px;
-    width: 100%;
-    height: auto;
-    transition-duration: .3s;
-}
-
-ul li {
-    position: relative;
-    margin-left: -35px;
-    padding: 10px;
-    color: white;
-    border: 1px solid white;
-    border-radius: 8px;
-    background-color: rgba(0, 0, 0, .6);
-    cursor: pointer;
-    z-index: 1000;
-}
-
-ul li .link {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-ul li p {
-    margin: 0px;
-    font-size: .6em;
-    color: white;
-}
-
-.cerrar {
-    position: absolute;
-    left: 92%;
-    top: 2px;
-    font-size: .9em;
-}*/
-
 ul li:before {
     content: attr(data-mets);
     position: absolute;
@@ -335,8 +278,8 @@ ul li:before {
     position: fixed;
     width: 30px;
     height: 30px;
-    left: 35px;
-    bottom: 40px;
+    left: 20px;
+    bottom: 35px;
     border: 1px solid black;
     border-radius: 50%;
     text-align: center;
