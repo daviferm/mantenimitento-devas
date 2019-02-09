@@ -174,7 +174,7 @@ body .main {
     padding: 0px;
     background: -webkit-linear-gradient(to right, #904e95, #e96443);
     background: linear-gradient(to right, #904e95, #e96443);
-    background: rgba(78, 101, 85, 0.6);
+    background: rgba(78, 101, 85, 0.8);
     transition-duration: .4s;
     z-index: 10;
     overflow: scroll;
@@ -229,7 +229,8 @@ body .main {
     height: 100%;
 }
 
-.listaTareas ul li .link {
+.listaTareas ul li .link,
+.listaTareas .noList {
     position: relative;
     display: flex;
     flex-flow: row nowrap;
@@ -244,6 +245,17 @@ body .main {
     cursor: pointer;
     vertical-align: text-bottom;
     /* animation: .6s mostrar 1; */
+}
+
+.listaTareas .noList {
+    display: none;
+    background-color: rgb(29, 77, 43);
+    font-size: 1.2em;
+}
+
+.listaTareas .noList p {
+    margin: 12px;
+    color: wheat;
 }
 
 .listaTareas ul li .link .name {
@@ -383,4 +395,34 @@ ul li:before {
     width: 80%;
     height: 10px;
     background: -webkit-radial-gradient( center, rgb(164, 160, 160) 0%, rgb(250, 250, 248) 60%);
+}
+
+
+/* Animaciones */
+
+.animated {
+    -webkit-animation-duration: .8s;
+    animation-duration: .8s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.fast {
+    -webkit-animation-duration: 0.4s;
+    animation-duration: 0.4s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fadeIn {
+    animation-name: fadeIn;
 }
