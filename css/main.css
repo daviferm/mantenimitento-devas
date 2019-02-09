@@ -8,8 +8,17 @@ body {
     background: linear-gradient(to right, #904e95, #e96443);
     font-family: 'Roboto', sans-serif;
     height: 100vh;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+
+body main {
+    width: 100%;
+    height: 100vh;
     overflow: hidden;
-    padding-bottom: 200px;
+    position: relative;
+    max-width: 480px;
 }
 
 .header {
@@ -84,11 +93,11 @@ body {
 }
 
 body .main {
-    /* background-image: url("../img/torresMadrid.png"); */
+    /* background-image: url("../img/torresMadrid.png");
     background-repeat: repeat-y;
     background-position: top center;
-    background-size: 100%;
-    height: 100vh;
+    background-size: 100%; */
+    height: 100%;
     width: 100%;
     z-index: -15;
     display: flex;
@@ -156,21 +165,17 @@ body .main {
     background-color: rgba(68, 155, 232, 0.8);
 }
 
-.swal2-container {
-    z-index: 100000;
-}
-
 .listaTareas {
     position: absolute;
-    top: 0px;
+    top: 80px;
     left: 0px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     text-align: center;
     width: 100%;
     height: 100%;
-    margin-top: 80px;
-    padding-top: 14px;
+    margin: 0px;
+    padding: 0px;
     background: rgba(94, 90, 84, .8);
     transition-duration: .4s;
     z-index: 10;
@@ -180,31 +185,45 @@ body .main {
 .listaTareas footer {
     position: relative;
     width: 100%;
-    height: 140px;
+    height: 110px;
     background: transparent;
-    bottom: 0%;
+    /* background: orange; */
+    bottom: 0px;
     z-index: -20;
 }
 
 .listaTareas .cerrarLista {
     position: relative;
     top: 0px;
-    width: 100%;
+    width: 40%;
+    margin-left: 30%;
     height: 30px;
+    padding-top: 12px;
     display: flex;
     flex-flow: row nowrap;
-    justify-content: flex-end;
+    justify-content: center;
 }
 
-.listaTareas .cerrarLista p {
+.listaTareas .arrow {
+    width: 22px;
+    height: 22px;
+    border-left: 8px solid rgb(242, 224, 224);
+    border-bottom: 8px solid rgb(242, 224, 224);
+    margin-left: 25px;
+    border-radius: 5px;
+    transform: rotate(-45deg) translateY(-12px);
+}
+
+
+/* .listaTareas .cerrarLista p {
     margin: 0px 14px;
     font-size: 1.2em;
     padding: .3em;
     border-radius: 50%;
-    width: 15px;
+    width: 20px;
     background: rgba(179, 78, 78, .8);
     color: white;
-}
+} */
 
 .listaTareas ul {
     position: relative;
@@ -212,6 +231,10 @@ body .main {
     margin: 0px;
     width: 98%;
     margin-left: -38px;
+}
+
+.listaTareas ul li:last-child {
+    margin-bottom: 40px;
 }
 
 .listaTareas ul li {

@@ -302,8 +302,6 @@ function cargarMapaGuardado(nameMap) {
     //Obtener el número del barrio del mapa seleccionado
     let barrio = Number(mapaGuardado[0].barrio.substr(0, 2));
 
-    console.log(barrio);
-
     //Obtener el centro del mapa
     const latLng = optenerCentro(barrio);
 

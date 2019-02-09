@@ -14,48 +14,51 @@
 </head>
 
 <body>
-    <div class="header">
-        <header>
-            <div class="formulario">
-                <form action="#" id="formulario">
-                    <section class="for">
-                        <div class="barrio">
-                            <select class="form-control" id="barrio">
-                                <option value="0">Selectiona un Barrio</option>
-							</select>
-                        </div>
-                        <div class="botonForm">
-                            <button id="botonMapa" type="submit">
-								<ion-icon name="add"></ion-icon>
-							</button>
-                        </div>
-                    </section>
-                </form>
+    <main>
+        <div class="header">
+            <header>
+                <div class="formulario">
+                    <form action="#" id="formulario">
+                        <section class="for">
+                            <div class="barrio">
+                                <select class="form-control" id="barrio">
+                                    <option value="0">Selectiona un Barrio</option>
+                                </select>
+                            </div>
+                            <div class="botonForm">
+                                <button id="botonMapa" type="submit">
+                                    <ion-icon name="add"></ion-icon>
+                                </button>
+                            </div>
+                        </section>
+                    </form>
+                </div>
+            </header>
+        </div>
+        <div class="main">
+            <div id="mapa">
+                <div id="map"></div>
             </div>
-        </header>
-    </div>
-    <div class="main">
-        <div id="mapa">
-            <div id="map"></div>
         </div>
-    </div>
-    <div class="listaTareas">
-        <div class="cerrarLista">
-            <p>X</p>
-        </div>
-        <ul id="ul">
+        <div class="listaTareas">
+            <div class="cerrarLista">
+                <div class="arrow"></div>
+                <!-- <p>X</p> -->
+            </div>
+            <ul id="ul">
 
-        </ul>
-        <footer></footer>
-    </div>
-    <div class="mapSave">
-        <div class="ul">
-            <ion-icon name="menu"></ion-icon>
+            </ul>
+            <footer></footer>
         </div>
-    </div>
-    <div class="posicionGps">
-        <ion-icon name="navigate"></ion-icon>
-    </div>
+        <div class="mapSave">
+            <div class="ul">
+                <ion-icon name="menu"></ion-icon>
+            </div>
+        </div>
+        <div class="posicionGps">
+            <ion-icon name="navigate"></ion-icon>
+        </div>
+    </main>
 
     <script src="https://unpkg.com/ionicons@4.2.4/dist/ionicons.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpPC3Lc1ovVJMm5tXfyMqchiu38cL6_eA"></script>
