@@ -207,8 +207,8 @@ body .main {
 .listaTareas .arrow {
     width: 22px;
     height: 22px;
-    border-left: 8px solid rgb(242, 224, 224);
-    border-bottom: 8px solid rgb(242, 224, 224);
+    border-left: 5px solid rgb(242, 224, 224);
+    border-bottom: 5px solid rgb(242, 224, 224);
     margin-left: 25px;
     border-radius: 5px;
     transform: rotate(-45deg) translateY(-12px);
@@ -274,7 +274,7 @@ body .main {
     width: 15%;
     font-size: 1.6em;
     padding-top: 8px;
-    color: whitesmoke;
+    color: rgb(196, 182, 182);
 }
 
 
