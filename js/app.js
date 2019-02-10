@@ -1,7 +1,4 @@
 import { Mapa } from './MAP.js';
-import { baseDatos } from './baseDatos.js';
-import { baseDatosMets } from './baseDatosMet.js';
-
 
 //Poner el scroll al principio de la página al recargar
 document.addEventListener('DOMContentLoaded', function() {
@@ -60,7 +57,11 @@ async function mostrarMapa(e) {
         })
 
         if (name) {
-            await swal({ type: 'success', title: 'Tarea "' + name + '" guardada..' })
+
+            let tarea = await comprobarNombre(name);
+
+            await swal({ type: 'success', title: 'Tarea "' + name + '" guardada..' });
+
 
             const latLng = optenerCentro(barrioSeleccionado);
 
@@ -79,6 +80,26 @@ async function mostrarMapa(e) {
 
         }
     }
+}
+
+function comprobarNombre(name) {
+
+    let tareas = JSON.parse(localStorage.getItem('mapSave'));
+    tareas.forEach(el => {
+        if (name === el) {
+            Swal.fire({
+                type: 'error',
+                title: 'Oops...',
+                text: 'El nombre no puede estar duplicado!',
+                footer: 'Elige un título diferente!'
+            })
+            console.info('el nombre', name, 'ya existe!!!');
+            throw Error;
+        } else {
+            console.log('tarea añadida!!');
+        }
+    })
+
 }
 
 cerrarLi.addEventListener('click', function() {
@@ -197,8 +218,6 @@ function cargarMapasLocalStorage() {
         mapSave.setAttribute('data-count', 0);
 
     }
-
-
 }
 //Cargar número de listas guardadas
 function cargarNumeroMapas() {
@@ -233,15 +252,6 @@ function ulSize() {
 
     lista.style.transform = 'translateY(0%)';
 
-    // if (activeUl) {
-    //     ul.style.width = '250px';
-    //     ul.style.height = `${li*50}px`;
-    //     activeUl = !activeUl;
-    // } else {
-    //     ul.style.width = '0px';
-    //     ul.style.height = '0px';
-    //     activeUl = !activeUl;
-    // }
 }
 
 //Optener cetro del mapa según el barrio

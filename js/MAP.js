@@ -1,5 +1,4 @@
-// import { baseDatos } from './baseDatos.js';
-// import { baseDatosMets } from './baseDatosMet.js';
+//Clase para manejar el mapa
 
 export class Mapa {
     constructor(zoom, latLng) {
@@ -63,7 +62,7 @@ export class Mapa {
 
 
                 })
-            }, 1000);
+            }, 800);
 
             //Asignar activo
             this.infoWindowActivo = infowindow;
@@ -179,10 +178,12 @@ function borrarElemLocalStorage(name, numMet) {
     mets.forEach((item, index) => {
         if (item.alias == numMet) {
             mets[index].hecho = true;
-            // mets.splice(index, 1);
+            console.log('parquimetro borrado!!!');
         }
     })
     localStorage.setItem(name, JSON.stringify(mets));
+
+    actualizarNumeroMets(name);
 
 }
 
@@ -214,4 +215,38 @@ function obtenerMapasLocalStorage() {
         mapSave = JSON.parse(localStorage.getItem('mapSave'));
     }
     return mapSave;
+}
+
+function actualizarNumeroMets() {
+    //Obtener el arreglo con las tareas creadas
+    let tareas = JSON.parse(localStorage.getItem('mapSave'));
+    //Obtener un arreglo con los 'li' creados
+    const lis = document.getElementsByTagName('li');
+    console.log(tareas);
+
+    //Recorremos el arreglo de tareas
+    for (let i = 0; i < tareas.length; i++) {
+
+        //Obtenemos el número de mets
+        let mets = cargarNumeroMets(tareas[i]);
+
+        //Añadimos el número de mets en el atributo 'data-mets'
+        lis[i].setAttribute('data-mets', mets);
+
+    }
+
+}
+
+//Cargar número de mets
+function cargarNumeroMets(name) {
+    let mets = JSON.parse(localStorage.getItem(name));
+    let count = 0;
+
+    mets.forEach(function(el) {
+        if (!el.hecho) {
+            count++;
+        }
+    })
+    return count + "/" + mets.length;
+
 }
