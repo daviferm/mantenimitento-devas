@@ -2,10 +2,9 @@ body {
     margin: 0px;
     padding: 0px;
     background: #e96443;
-    /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #904e95, #e96443);
-    /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #904e95, #e96443);
+    background: rgba(78, 101, 85, 0.6);
     font-family: 'Roboto', sans-serif;
     height: 100vh;
     display: flex;
@@ -172,8 +171,6 @@ body .main {
     height: 100%;
     margin: 0px;
     padding: 0px;
-    background: -webkit-linear-gradient(to right, #904e95, #e96443);
-    background: linear-gradient(to right, #904e95, #e96443);
     background: rgba(78, 101, 85, 0.8);
     transition-duration: .4s;
     z-index: 10;
