@@ -177,12 +177,45 @@ body .main {
     overflow: scroll;
 }
 
+.listaTareas .arrow {
+    position: relative;
+    left: 0px;
+    width: 2px;
+    height: 25px;
+    margin-top: -2px;
+    background: transparent;
+    cursor: pointer;
+}
+
+.listaTareas .arrow:before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 3px;
+    height: 20px;
+    background: rgb(242, 224, 224);
+    transform-origin: bottom center;
+    transform: rotate(60deg);
+}
+
+.listaTareas .arrow:after {
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 3px;
+    height: 20px;
+    background: rgb(242, 224, 224);
+    transform-origin: bottom center;
+    transform: rotate(-60deg);
+}
+
 .listaTareas footer {
     position: relative;
     width: 100%;
     height: 110px;
     background: transparent;
-    /* background: orange; */
     bottom: 0px;
     z-index: -20;
 }
@@ -197,9 +230,13 @@ body .main {
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
+    cursor: pointer;
 }
 
+
+/* 
 .listaTareas .arrow {
+    display: none;
     width: 22px;
     height: 22px;
     border-left: 5px solid rgb(242, 224, 224);
@@ -207,7 +244,7 @@ body .main {
     margin-left: 25px;
     border-radius: 5px;
     transform: rotate(-45deg) translateY(-12px);
-}
+} */
 
 .listaTareas ul {
     position: relative;
