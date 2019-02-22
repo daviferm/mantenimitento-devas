@@ -1,17 +1,20 @@
 import { Mapa } from './MAP.js';
-import { baseDatos } from './baseDatos.js';
-import { baseDatosMets } from './baseDatosMet.js';
-
 
 //Poner el scroll al principio de la página al recargar
 document.addEventListener('DOMContentLoaded', function() {
-    window.scrollBy(0, 0);
+    window.scrollBy(0, -window.innerHeight);
 });
 //Variables globales
 const selectBarrio = document.getElementById('barrio');
 
 const icon = document.querySelector('.ul ion-icon');
 const ul = document.querySelector('#ul');
+const cerrarLi = document.querySelector('.cerrarLista');
+const lista = document.querySelector('.listaTareas');
+
+
+//constante del icono del menu para añadir atributo del número de tareas creadas
+const mapSave = document.querySelector('.mapSave');
 
 //Llenamos el listado de barrios
 const barriosHTML = ["44 Guindalera", "45 Lista", "46 Castellana", "51 El Viso", "52 Prosperidad", "53 Ciudad Jardín", "54 Hispanoamérica", "55 Nueva España", "56 Castilla", "61 Bellas Vistas", "62 Cuatro Caminos", "63 Castillejos", "64 Almenara", "65 Valdeacederas", "66 Berruguete", "75 Rios Rosas", "76 Vallehermoso", "84 Pilar", "85 La Paz", "93 Ciudad Universitaria"];
@@ -54,7 +57,11 @@ async function mostrarMapa(e) {
         })
 
         if (name) {
-            await swal({ type: 'success', title: 'Tarea "' + name + '" guardada..' })
+
+            let tarea = await comprobarNombre(name);
+
+            await swal({ type: 'success', title: 'Tarea "' + name + '" guardada..' });
+
 
             const latLng = optenerCentro(barrioSeleccionado);
 
@@ -63,9 +70,10 @@ async function mostrarMapa(e) {
             //Mostrar todos los parquímetros en el mapa 
 
             mapa.crearMapa(barrioSeleccionado, name);
+            window.scrollBy(0, -window.innerHeight);
 
             setTimeout(function() {
-                crearLi(name);
+                crearLi(name, barrioSeleccionado);
 
                 cargarNumeroMapas();
             }, 400);
@@ -73,6 +81,32 @@ async function mostrarMapa(e) {
         }
     }
 }
+
+function comprobarNombre(name) {
+
+    let tareas = JSON.parse(localStorage.getItem('mapSave'));
+    tareas.forEach(el => {
+        if (name === el) {
+            Swal.fire({
+                type: 'error',
+                title: 'Oops...',
+                text: 'El nombre no puede estar duplicado!',
+                footer: 'Elige un título diferente!'
+            })
+            console.info('el nombre', name, 'ya existe!!!');
+            throw Error;
+        } else {
+            console.log('tarea añadida!!');
+        }
+    })
+
+}
+
+cerrarLi.addEventListener('click', function() {
+
+    lista.style.transform = 'translateY(110%)';
+})
+
 let activeUl = true;
 icon.addEventListener('click', ulSize);
 ul.addEventListener('click', (e) => {
@@ -82,12 +116,13 @@ ul.addEventListener('click', (e) => {
         let texto = e.target.textContent;
 
         cargarMapaGuardado(texto);
-        ulSize();
+        lista.style.transform = 'translateY(110%)';
+        // ulSize();
     }
     if (e.target.parentElement.className == 'cerrar') {
 
         //Obtenemos el texto del mapa que vamos a borrar
-        let texto = e.target.parentElement.previousElementSibling.textContent.trim();
+        let texto = e.target.parentElement.parentElement.firstElementChild.textContent.trim();
 
         //Lanzar un alerta para preguntar si quieres borrar el mapa
         swal({
@@ -111,16 +146,13 @@ ul.addEventListener('click', (e) => {
                 let mapas = JSON.parse(localStorage.getItem('mapSave'));
                 //Borrar el nombre del mapa del array
                 mapas.splice(mapas.indexOf(texto), 1);
+
                 //Volver a guardar en localStorage
                 localStorage.setItem('mapSave', JSON.stringify(mapas));
                 //Borrar enlace del mapa
                 let borrarLi = e.target.parentElement.parentElement.parentElement;
                 borrarLi.remove();
-                //Establecemos la variable "activeUl" en true para que no se cierre
-                //la lista de enlaces al borrar uno
-                activeUl = true;
-                //Actualizar tamaño de la lista
-                ulSize();
+
                 cargarNumeroMapas();
             }
         })
@@ -131,22 +163,41 @@ ul.addEventListener('click', (e) => {
 
 //Crear un enlace para el mapa
 function crearLi(name) {
+
+    document.querySelector('.noList').style.display = 'none';
+
+
+    //Obtener el mapa de localStorage
+    let mapaGuardado = JSON.parse(localStorage.getItem(name));
+
+    //Obtener el número del barrio del mapa seleccionado
+    let barrio = Number(mapaGuardado[0].barrio.substr(0, 2));
+
     let html;
     let li = document.createElement('li');
-    html = `<div class="link">
-                <div>
+    html = `
+            <div class="link animated fast fadeIn">
+                <div class="name">
                     <p class="enlace">${name}</p>
                 </div>
-                <div class="cerrar">
-                    <span>x</span>
+                <div class="barrio">
+                    <div>
+                        <p>Barrio: <strong> ${barrio} </strong></p>
+                    </div>
                 </div>
-            </div>`;
+                <div class="cerrar">
+                    <ion-icon name="trash"></ion-icon>
+                </div>
+            </div>
+
+            `;
     li.innerHTML = html;
     ul.appendChild(li);
     const numMets = cargarNumeroMets(name);
     li.setAttribute('data-mets', numMets);
 
 }
+
 
 // Función para cargar los mapas guardados en localStorage
 function cargarMapasLocalStorage() {
@@ -157,14 +208,29 @@ function cargarMapasLocalStorage() {
             crearLi(el);
         })
 
+        if (lis.length <= 0) {
+            document.querySelector('.noList').style.display = 'flex';
+            mapSave.setAttribute('data-count', 0);
+
+        }
+    } else {
+        document.querySelector('.noList').style.display = 'flex';
+        mapSave.setAttribute('data-count', 0);
+
     }
 }
 //Cargar número de listas guardadas
 function cargarNumeroMapas() {
     let lis = JSON.parse(localStorage.getItem('mapSave'));
-    const mapSave = document.querySelector('.mapSave');
 
     mapSave.setAttribute('data-count', lis.length);
+
+    if (JSON.parse(localStorage.getItem('mapSave')).length <= 0) {
+
+        document.querySelector('.noList').style.display = 'flex';
+        mapSave.setAttribute('data-count', 0);
+    }
+
 }
 //Cargar número de mets
 function cargarNumeroMets(name) {
@@ -184,15 +250,8 @@ function cargarNumeroMets(name) {
 function ulSize() {
     let li = document.getElementsByTagName('li').length;
 
-    if (activeUl) {
-        ul.style.width = '200px';
-        ul.style.height = `${li*40}px`;
-        activeUl = !activeUl;
-    } else {
-        ul.style.width = '0px';
-        ul.style.height = '0px';
-        activeUl = !activeUl;
-    }
+    lista.style.transform = 'translateY(0%)';
+
 }
 
 //Optener cetro del mapa según el barrio
@@ -267,6 +326,7 @@ function optenerCentro(barrio) {
 
 //Cargar mapa guardado al cliquear en un enlace
 function cargarMapaGuardado(nameMap) {
+    window.scrollBy(0, -window.innerHeight);
 
     //Obtener el mapa de localStorage
     let mapaGuardado = JSON.parse(localStorage.getItem(nameMap));
@@ -313,11 +373,14 @@ function cargarMapaGuardado(nameMap) {
         let cont = document.querySelector('.infoPark');
     })
     let miPosicion = mapa.getPosicion();
+
+
 }
 // Obtener posicion GPS
 let miPosicion = true;
 let getPosicion = () => {
     if (navigator.geolocation) {
+
         navigator.geolocation.getCurrentPosition((position) => {
             position = {
                 lat: position.coords.latitude,
@@ -327,10 +390,7 @@ let getPosicion = () => {
                 lat: position.lat,
                 lng: position.lng
             }
-            let miPosicion = mapa.mostrarPosicion(latLng);
-            if (!miPosicion) {
-
-            }
+            miPosicion = mapa.mostrarPosicion(latLng);
 
         });
 

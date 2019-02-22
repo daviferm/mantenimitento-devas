@@ -2,11 +2,22 @@ body {
     margin: 0px;
     padding: 0px;
     background: #e96443;
-    /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #904e95, #e96443);
-    /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #904e95, #e96443);
+    background: rgba(78, 101, 85, 0.6);
     font-family: 'Roboto', sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+
+body main {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    max-width: 480px;
 }
 
 .header {
@@ -81,13 +92,9 @@ body {
 }
 
 body .main {
-    background-image: url("../img/torresMadrid.png");
-    background-repeat: repeat-y;
-    background-position: top center;
-    background-size: 100%;
-    height: 100vh;
+    height: 100%;
     width: 100%;
-    z-index: -10;
+    z-index: -15;
     display: flex;
     flex-direction: column;
     align-content: flex-start;
@@ -112,7 +119,7 @@ body .main {
 .mapSave {
     position: fixed;
     right: 25px;
-    bottom: 10px;
+    bottom: 18px;
     font-size: 2em;
     margin: 0px;
     padding: 0px;
@@ -122,21 +129,21 @@ body .main {
 .mapSave:before {
     content: "\f1d3";
     font-family: "Ionicons";
-    font-size: 1.15em;
+    font-size: 1.2em;
     position: relative;
     border-radius: 50px;
     padding: 2px 4px;
     top: 5px;
-    left: 90%;
+    left: 70%;
 }
 
 .mapSave:after {
     content: attr(data-count);
     position: absolute;
     color: beige;
-    font-size: .5em;
-    top: 16px;
-    left: 120%;
+    font-size: .4em;
+    top: 20px;
+    left: 104%;
 }
 
 .mapSave .ul {
@@ -153,73 +160,184 @@ body .main {
     background-color: rgba(68, 155, 232, 0.8);
 }
 
-ul {
-    list-style: none;
-    font-size: 1em;
-    overflow: hidden;
+.listaTareas {
     position: absolute;
-    bottom: 100%;
-    right: 100%;
-    margin-bottom: -5px;
-    width: 0px;
-    height: 0px;
-    transition-duration: .3s;
+    top: 80px;
+    left: 0px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    background: rgba(78, 101, 85, 0.8);
+    transition-duration: .4s;
+    z-index: 10;
+    overflow: scroll;
 }
 
-ul li {
+.listaTareas .arrow {
     position: relative;
-    margin-left: -35px;
-    padding: 8px;
-    color: white;
-    border: 1px solid white;
-    border-radius: 8px;
-    background-color: rgba(0, 0, 0, .6);
+    left: 0px;
+    width: 2px;
+    height: 25px;
+    margin-top: -2px;
+    background: transparent;
     cursor: pointer;
 }
 
-ul li .link {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-ul li p {
-    margin: 0px;
-    font-size: .6em;
-    color: white;
-}
-
-.cerrar {
+.listaTareas .arrow:before {
+    content: "";
     position: absolute;
-    left: 90%;
-    top: 4px;
-    font-size: .7em;
+    top: 0px;
+    right: 0px;
+    width: 3px;
+    height: 20px;
+    background: rgb(242, 224, 224);
+    transform-origin: bottom center;
+    transform: rotate(60deg);
+}
+
+.listaTareas .arrow:after {
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 3px;
+    height: 20px;
+    background: rgb(242, 224, 224);
+    transform-origin: bottom center;
+    transform: rotate(-60deg);
+}
+
+.listaTareas footer {
+    position: relative;
+    width: 100%;
+    height: 110px;
+    background: transparent;
+    bottom: 0px;
+    z-index: -20;
+}
+
+.listaTareas .cerrarLista {
+    position: relative;
+    top: 0px;
+    width: 40%;
+    margin-left: 30%;
+    height: 30px;
+    padding-top: 12px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    cursor: pointer;
+}
+
+
+/* 
+.listaTareas .arrow {
+    display: none;
+    width: 22px;
+    height: 22px;
+    border-left: 5px solid rgb(242, 224, 224);
+    border-bottom: 5px solid rgb(242, 224, 224);
+    margin-left: 25px;
+    border-radius: 5px;
+    transform: rotate(-45deg) translateY(-12px);
+} */
+
+.listaTareas ul {
+    position: relative;
+    list-style: none;
+    margin: 0px;
+    width: 98%;
+    margin-left: -38px;
+}
+
+.listaTareas ul li:last-child {
+    margin-bottom: 40px;
+}
+
+.listaTareas ul li {
+    position: relative;
+    height: 100%;
+}
+
+.listaTareas ul li .link,
+.listaTareas .noList {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    width: 100%;
+    height: 45px;
+    margin-top: 5px;
+    border-radius: 8px;
+    padding: 0px 0px;
+    background-color: rgb(75, 91, 136);
+    /* background: linear-gradient(to top, rgb(100, 114, 150) 30%, rgb(56, 103, 88) 100%); */
+    cursor: pointer;
+    vertical-align: text-bottom;
+    /* animation: .6s mostrar 1; */
+}
+
+.listaTareas .noList {
+    display: none;
+    background-color: rgb(29, 77, 43);
+    font-size: 1.2em;
+}
+
+.listaTareas .noList p {
+    margin: 12px;
+    color: wheat;
+}
+
+.listaTareas ul li .link .name {
+    width: 60%;
+    color: whitesmoke;
+}
+
+.listaTareas ul li .link .barrio {
+    width: 25%;
+    margin-top: 5px;
+    color: whitesmoke;
+}
+
+.listaTareas ul li .link .cerrar {
+    width: 15%;
+    font-size: 1.6em;
+    padding-top: 8px;
+    color: rgb(196, 182, 182);
 }
 
 ul li:before {
     content: attr(data-mets);
     position: absolute;
     color: rgb(101, 235, 233);
-    font-size: .4em;
+    font-size: .8em;
     top: 4px;
-    right: 35px;
+    right: 80px;
     z-index: 400;
 }
 
 .posicionGps {
     position: fixed;
-    width: 40px;
-    height: 40px;
-    left: 35px;
+    width: 30px;
+    height: 30px;
+    left: 20px;
     bottom: 30px;
+    border: 1px solid black;
+    border-radius: 50%;
     text-align: center;
     outline: none;
     cursor: pointer;
 }
 
 .posicionGps ion-icon {
-    font-size: 2em;
-    margin-top: 5px;
+    font-size: 1.5em;
+    margin-top: 2px;
+    margin-left: 2px;
+    transform: rotate(45deg);
 }
 
 .label {
@@ -311,4 +429,34 @@ ul li:before {
     width: 80%;
     height: 10px;
     background: -webkit-radial-gradient( center, rgb(164, 160, 160) 0%, rgb(250, 250, 248) 60%);
+}
+
+
+/* Animaciones */
+
+.animated {
+    -webkit-animation-duration: .8s;
+    animation-duration: .8s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.fast {
+    -webkit-animation-duration: 0.4s;
+    animation-duration: 0.4s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fadeIn {
+    animation-name: fadeIn;
 }
