@@ -58,7 +58,7 @@ async function mostrarMapa(e) {
 
         if (name) {
 
-            let tarea = await comprobarNombre(name);
+            let tarea = await comprobarNombre(name, barrioSeleccionado);
 
             await swal({ type: 'success', title: 'Tarea "' + name + '" guardada..' });
 
@@ -82,23 +82,32 @@ async function mostrarMapa(e) {
     }
 }
 
-function comprobarNombre(name) {
+function comprobarNombre(name, barrio) {
 
-    let tareas = JSON.parse(localStorage.getItem('mapSave'));
-    tareas.forEach(el => {
-        if (name === el) {
-            Swal.fire({
-                type: 'error',
-                title: 'Oops...',
-                text: 'El nombre no puede estar duplicado!',
-                footer: 'Elige un título diferente!'
-            })
-            console.info('el nombre', name, 'ya existe!!!');
-            throw Error;
-        } else {
-            console.log('tarea añadida!!');
-        }
-    })
+    if (!localStorage.getItem('mapSave')) {
+        return null;
+    } else {
+
+        let tareas = JSON.parse(localStorage.getItem('mapSave'));
+        tareas.forEach(el => {
+
+            let tarea = JSON.parse(localStorage.getItem(el));
+
+            if (name === el && tarea[0].barrio.startsWith(barrio)) {
+                Swal.fire({
+                    type: 'error',
+                    title: 'Oops...',
+                    text: 'El nombre y barrio no puede estar duplicado!',
+                    footer: 'Elige un título diferente!'
+                })
+                console.info('el nombre', name, 'ya existe!!!');
+                throw Error;
+            } else {
+                console.log('tarea añadida!!');
+            }
+        })
+    }
+
 
 }
 
