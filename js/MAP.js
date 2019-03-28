@@ -58,7 +58,8 @@ export class Mapa {
 
                 btnMap.addEventListener('click', () => {
 
-                    window.open("https://www.google.es/maps/dir/mi+ubicacion/" + latLng.lat + "," + latLng.lng + "/");
+                    // window.open("https://www.google.es/maps/dir/mi+ubicacion/" + latLng.lat + "," + latLng.lng + "/");
+                    window.open(`https://maps.google.com/?q=${latLng.lat},${latLng.lng}`);
 
 
                 })
