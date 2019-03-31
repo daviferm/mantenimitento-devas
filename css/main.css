@@ -275,10 +275,28 @@ body .main {
     border-radius: 8px;
     padding: 0px 0px;
     background-color: rgb(75, 91, 136);
-    /* background: linear-gradient(to top, rgb(100, 114, 150) 30%, rgb(56, 103, 88) 100%); */
     cursor: pointer;
     vertical-align: text-bottom;
     /* animation: .6s mostrar 1; */
+}
+
+.listaTareas ul li .paper {
+    background: linear-gradient(to top, rgb(47, 101, 86) 80%, rgb(95, 133, 121) 100%);
+}
+
+.listaTareas ul .desc {
+    font-size: .9rem;
+    font-weight: 400;
+    color: rgb(48, 30, 30);
+    margin: 0;
+}
+
+.listaTareas ul .title:nth-child(2) {
+    margin-bottom: 1rem;
+}
+
+.red {
+    background-color: rgb(138, 83, 93);
 }
 
 .listaTareas .noList {
@@ -292,6 +310,18 @@ body .main {
     color: wheat;
 }
 
+.listaTareas .title {
+    display: none;
+    font-size: 1.5em;
+    font-weight: lighter;
+    color: aliceblue;
+}
+
+.listaTareas .title h5 {
+    margin: 0;
+    margin-bottom: .5rem;
+}
+
 .listaTareas ul li .link .name {
     width: 60%;
     color: whitesmoke;
@@ -303,7 +333,8 @@ body .main {
     color: whitesmoke;
 }
 
-.listaTareas ul li .link .cerrar {
+.listaTareas ul li .link .cerrar,
+.listaTareas ul li .link .restaurar {
     width: 15%;
     font-size: 1.6em;
     padding-top: 8px;
@@ -322,22 +353,24 @@ ul li:before {
 
 .posicionGps {
     position: fixed;
-    width: 30px;
-    height: 30px;
+    width: 38px;
+    height: 38px;
     left: 20px;
     bottom: 30px;
     border: 1px solid black;
-    border-radius: 50%;
+    border-radius: 5px;
     text-align: center;
     outline: none;
-    cursor: pointer;
+    background-color: rgba(68, 155, 232, 0.8);
+    box-shadow: 2px 2px 10px gray;
 }
 
 .posicionGps ion-icon {
-    font-size: 1.5em;
-    margin-top: 2px;
+    font-size: 1.8em;
+    margin-top: 5px;
     margin-left: 2px;
-    transform: rotate(45deg);
+    cursor: pointer;
+    /* transform: rotate(45deg); */
 }
 
 .label {

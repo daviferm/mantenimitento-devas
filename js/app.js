@@ -11,6 +11,7 @@ const icon = document.querySelector('.ul ion-icon');
 const ul = document.querySelector('#ul');
 const cerrarLi = document.querySelector('.cerrarLista');
 const lista = document.querySelector('.listaTareas');
+const title = document.querySelector('.title');
 
 
 //constante del icono del menu para añadir atributo del número de tareas creadas
@@ -58,7 +59,9 @@ async function mostrarMapa(e) {
 
         if (name) {
 
-            let tarea = await comprobarNombre(name, barrioSeleccionado);
+            let tarea = await comprobarNombre(name);
+
+            let papelera = await comprobarPapelera(name);
 
             await swal({ type: 'success', title: 'Tarea "' + name + '" guardada..' });
 
@@ -73,7 +76,7 @@ async function mostrarMapa(e) {
             window.scrollBy(0, -window.innerHeight);
 
             setTimeout(function() {
-                crearLi(name, barrioSeleccionado);
+                crearLi(name, 'menu');
 
                 cargarNumeroMapas();
             }, 400);
@@ -82,7 +85,7 @@ async function mostrarMapa(e) {
     }
 }
 
-function comprobarNombre(name, barrio) {
+function comprobarNombre(name) {
 
     if (!localStorage.getItem('mapSave')) {
         return null;
@@ -93,22 +96,49 @@ function comprobarNombre(name, barrio) {
 
             let tarea = JSON.parse(localStorage.getItem(el));
 
-            if (name === el && tarea[0].barrio.startsWith(barrio)) {
+            if (name === el) {
                 Swal.fire({
                     type: 'error',
                     title: 'Oops...',
-                    text: 'El nombre y barrio no puede estar duplicado!',
+                    text: 'El nombre no puede estar duplicado!',
                     footer: 'Elige un título diferente!'
                 })
                 console.info('el nombre', name, 'ya existe!!!');
                 throw Error;
             } else {
                 console.log('tarea añadida!!');
+                return name;
             }
         })
     }
+}
 
+function comprobarPapelera(name) {
 
+    if (!localStorage.getItem('papelera')) {
+        return null;
+    } else {
+
+        let tareas = JSON.parse(localStorage.getItem('papelera'));
+        tareas.forEach(el => {
+
+            let tarea = JSON.parse(localStorage.getItem(el));
+
+            if (name === el.tarea) {
+                Swal.fire({
+                    type: 'error',
+                    title: 'Oops...',
+                    text: 'El nombre ya existe en la papelera!',
+                    footer: 'Elige un título diferente!'
+                })
+                console.info('el nombre', name, 'ya existe!!!');
+                throw Error;
+            } else {
+                console.log('tarea añadida!!');
+                return name;
+            }
+        })
+    }
 }
 
 cerrarLi.addEventListener('click', function() {
@@ -148,13 +178,34 @@ ul.addEventListener('click', (e) => {
                     'El archivo a sido borrado.',
                     'success'
                 );
+                let papelera;
 
+                //Crear una variable para guardar los mapas eliminados
+                if (!localStorage.getItem('papelera')) {
+
+                    papelera = [];
+
+                    localStorage.setItem('papelera', JSON.stringify(papelera));
+                } else {
+                    papelera = JSON.parse(localStorage.getItem('papelera'));
+                    console.log(papelera);
+                }
                 //Borrar el mapa 
-                localStorage.removeItem(texto);
+                // localStorage.removeItem(texto);
                 //Obtener un array con los nombres de los mapas guardados en localStorage
                 let mapas = JSON.parse(localStorage.getItem('mapSave'));
                 //Borrar el nombre del mapa del array
-                mapas.splice(mapas.indexOf(texto), 1);
+                let borrado = mapas.splice(mapas.indexOf(texto), 1);
+
+                //Añadir el elemento borrado a la papelera y guardar en localStorage
+                //con una marca de tiempo
+                const obj = {
+                    tarea: borrado[0],
+                    time: new Date().getTime()
+                }
+                papelera.push(obj);
+                localStorage.setItem('papelera', JSON.stringify(papelera));
+                console.log(papelera);
 
                 //Volver a guardar en localStorage
                 localStorage.setItem('mapSave', JSON.stringify(mapas));
@@ -168,13 +219,43 @@ ul.addEventListener('click', (e) => {
 
 
     }
+    if (e.target.parentElement.className == 'restaurar') {
+
+        //Obtenemos el texto del mapa que vamos a borrar
+        let texto = e.target.parentElement.parentElement.firstElementChild.textContent.trim();
+
+        //Lanzar un alerta para preguntar si quieres restaurar el mapa
+        swal({
+            title: `Quieres restaurar el mapa: "${texto}"?`,
+            type: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, restaurar mapa!'
+        }).then((result) => {
+            if (result.value) {
+
+                let papelera = JSON.parse(localStorage.getItem('papelera'));
+                let mapas = JSON.parse(localStorage.getItem('mapSave'));
+
+                let mapa = papelera.findIndex(elem => elem.tarea == texto);
+                papelera.splice(mapa, 1);
+                mapas.push(texto);
+                localStorage.setItem('mapSave', JSON.stringify(mapas));
+                localStorage.setItem('papelera', JSON.stringify(papelera));
+                getPosicion();
+                console.log('tarea restaurada!!');
+
+            }
+        })
+    }
 })
 
+
 //Crear un enlace para el mapa
-function crearLi(name) {
+function crearLi(name, db) {
 
     document.querySelector('.noList').style.display = 'none';
-
 
     //Obtener el mapa de localStorage
     let mapaGuardado = JSON.parse(localStorage.getItem(name));
@@ -183,27 +264,54 @@ function crearLi(name) {
     let barrio = Number(mapaGuardado[0].barrio.substr(0, 2));
 
     let html;
-    let li = document.createElement('li');
-    html = `
-            <div class="link animated fast fadeIn">
-                <div class="name">
-                    <p class="enlace">${name}</p>
-                </div>
-                <div class="barrio">
-                    <div>
-                        <p>Barrio: <strong> ${barrio} </strong></p>
+    if (db == 'menu') {
+        let li = document.createElement('li');
+        html = `
+                <div class="link animated fast fadeIn">
+                    <div class="name">
+                        <p class="enlace">${name}</p>
+                    </div>
+                    <div class="barrio">
+                        <div>
+                            <p>Barrio: <strong> ${barrio} </strong></p>
+                        </div>
+                    </div>
+                    <div class="cerrar">
+                        <ion-icon name="trash"></ion-icon>
                     </div>
                 </div>
-                <div class="cerrar">
-                    <ion-icon name="trash"></ion-icon>
-                </div>
-            </div>
+    
+                `;
+        li.innerHTML = html;
+        ul.appendChild(li);
+        const numMets = cargarNumeroMets(name);
+        li.setAttribute('data-mets', numMets);
+        return li;
 
-            `;
-    li.innerHTML = html;
-    ul.appendChild(li);
-    const numMets = cargarNumeroMets(name);
-    li.setAttribute('data-mets', numMets);
+    } else {
+        let li = document.createElement('li');
+        html = `
+                <div class="link paper animated fast fadeIn">
+                    <div class="name">
+                        <p class="nombre">${name}</p>
+                    </div>
+                    <div class="barrio">
+                        <div>
+                            <p>Barrio: <strong> ${barrio} </strong></p>
+                        </div>
+                    </div>
+                    <div class="restaurar">
+                        <ion-icon name="refresh"></ion-icon>
+                    </div>
+                </div>
+                `;
+        li.innerHTML = html;
+        ul.appendChild(li);
+        const numMets = cargarNumeroMets(name);
+        li.setAttribute('data-mets', numMets);
+        return li;
+
+    }
 
 }
 
@@ -214,7 +322,7 @@ function cargarMapasLocalStorage() {
         let lis = JSON.parse(localStorage.getItem('mapSave'));
         cargarNumeroMapas();
         lis.forEach((el) => {
-            crearLi(el);
+            crearLi(el, 'menu');
         })
 
         if (lis.length <= 0) {
@@ -259,6 +367,12 @@ function cargarNumeroMets(name) {
 function ulSize() {
     let li = document.getElementsByTagName('li').length;
 
+    while (ul.children[2]) {
+        ul.children[2].remove();
+    }
+
+    cargarMapasLocalStorage();
+    title.style.display = 'none';
     lista.style.transform = 'translateY(0%)';
 
 }
@@ -386,27 +500,71 @@ function cargarMapaGuardado(nameMap) {
 
 }
 // Obtener posicion GPS
-let miPosicion = true;
 let getPosicion = () => {
-    if (navigator.geolocation) {
 
-        navigator.geolocation.getCurrentPosition((position) => {
-            position = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            };
-            let latLng = {
-                lat: position.lat,
-                lng: position.lng
-            }
-            miPosicion = mapa.mostrarPosicion(latLng);
-
-        });
-
-    } else {
-        throw error = new Error('Necesitas habilitar GPS!');
+    while (ul.children[2]) {
+        ul.children[2].remove();
     }
+
+    let papelera = JSON.parse(localStorage.getItem('papelera'));
+    title.style.display = 'block';
+
+    lista.style.transform = 'translateY(0%)';
+    papelera.forEach(el => {
+
+        console.log(el);
+        let time = el.time;
+
+        if (time + 604800000 < new Date().getTime()) {
+            //Si pasa mas de 7 dias borrar el mapa definitivamente
+
+            let papelera = JSON.parse(localStorage.getItem('papelera'));
+
+            let idx = papelera.findIndex(elem => elem.tarea === el.tarea);
+            papelera.splice(idx, 1);
+            localStorage.setItem('papelera', JSON.stringify(papelera));
+
+            console.log('Mapa borrado: ', el);
+
+        } else if (time + 518400000 < new Date().getTime()) {
+            //Si queda menos de un dia para eliminarlo se pone el fondo rojo.
+
+            const li = crearLi(el.tarea, 'papelera');
+
+            li.children[0].style.background = 'rgb(138, 83, 93)';
+
+        } else {
+
+            const li = crearLi(el.tarea, 'papelera');
+
+        }
+    });
+
+
+    // if (navigator.geolocation) {
+
+    //     navigator.geolocation.getCurrentPosition((position) => {
+    //         position = {
+    //             lat: position.coords.latitude,
+    //             lng: position.coords.longitude
+    //         };
+    //         let latLng = {
+    //             lat: position.lat,
+    //             lng: position.lng
+    //         }
+    //         miPosicion = mapa.mostrarPosicion(latLng);
+
+    //     });
+
+    // } else {
+    //     throw error = new Error('Necesitas habilitar GPS!');
+    // }
 }
 
 const locate = document.querySelector('.posicionGps');
 locate.addEventListener('click', getPosicion);
+
+// let tiempo1 = new Date("2019", "03", "10", "10", "10").getTime();
+// let tiempo2 = new Date("2019", "03", "16", "10", "10").getTime();
+
+// console.log(tiempo2 - tiempo1);
