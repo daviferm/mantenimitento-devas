@@ -357,7 +357,7 @@ ul li:before {
     height: 38px;
     left: 20px;
     bottom: 30px;
-    border: 1px solid black;
+    border: 0px solid black;
     border-radius: 5px;
     text-align: center;
     outline: none;
