@@ -2644,7 +2644,7 @@
     "barrio" : "65 VALDEACEDERAS.",
     "direccion" : "C/ Robledo, 12-14",
     "empresa" : "Devas 1",
-    "estado" : "activo",
+    "estado" : "desmontada",
     "fabricante" : "WisePark",
     "latitud" : "40.464397",
     "longitud" : "-3.704261",
@@ -8105,8 +8105,8 @@
     "empresa" : "Devas 2",
     "estado" : "activo",
     "fabricante" : "Parkare",
-    "latitud" : "40.441164",
-    "longitud" : "-3.661101",
+    "latitud" : "40.439009",
+    "longitud" : "-3.663008",
     "tarifa" : "Normal"
   }, {
     "alias" : "0204430043",
@@ -12094,8 +12094,8 @@
     "empresa" : "Devas 2",
     "estado" : "activo",
     "fabricante" : "Parkare",
-    "latitud" : "40.441587",
-    "longitud" : "-3.66317",
+    "latitud" : "40.440410",
+    "longitud" : "-3.662910",
     "tarifa" : "Normal"
   }, {
     "alias" : "0109330971",
@@ -14583,8 +14583,8 @@
     "empresa" : "Devas 1",
     "estado" : "activo",
     "fabricante" : "Parkeon",
-    "latitud" : "40.447511",
-    "longitud" : "-3.698661",
+    "latitud" : "40.448072",
+    "longitud" : "-3.698556",
     "tarifa" : "ZBE"
   }, {
     "alias" : "0106230190",
