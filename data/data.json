@@ -7903,7 +7903,7 @@
     "barrio" : "93 CIUDAD UNIVERSITARIA.",
     "direccion" : "Paseo Juan XXIII esquina Calle Beatriz de Bobadill",
     "empresa" : "Devas 1",
-    "estado" : "activo",
+    "estado" : "desmontada",
     "fabricante" : "Parkeon",
     "latitud" : "40.448616",
     "longitud" : "-3.716537",
@@ -8053,7 +8053,7 @@
     "barrio" : "44 GUINDALERA.",
     "direccion" : "Bremen Junto al 9",
     "empresa" : "Devas 2",
-    "estado" : "activo",
+    "estado" : "desmontada",
     "fabricante" : "Parkare",
     "latitud" : "40.437909",
     "longitud" : "-3.664426",
@@ -11994,8 +11994,8 @@
     "empresa" : "Devas 1",
     "estado" : "activo",
     "fabricante" : "Parkeon",
-    "latitud" : "40.449",
-    "longitud" : "-3.711527",
+    "latitud" : "40.447037",
+    "longitud" : "-3.712479",
     "tarifa" : "Normal"
   }, {
     "alias" : "0108520763",
