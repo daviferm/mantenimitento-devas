@@ -7903,7 +7903,7 @@
     "barrio" : "93 CIUDAD UNIVERSITARIA.",
     "direccion" : "Paseo Juan XXIII esquina Calle Beatriz de Bobadill",
     "empresa" : "Devas 1",
-    "estado" : "desmontada",
+    "estado" : "activo",
     "fabricante" : "Parkeon",
     "latitud" : "40.448616",
     "longitud" : "-3.716537",
@@ -11994,8 +11994,8 @@
     "empresa" : "Devas 1",
     "estado" : "activo",
     "fabricante" : "Parkeon",
-    "latitud" : "40.447037",
-    "longitud" : "-3.712479",
+    "latitud" : "40.449",
+    "longitud" : "-3.711527",
     "tarifa" : "Normal"
   }, {
     "alias" : "0108520763",
@@ -12136,16 +12136,6 @@
     "fabricante" : "Parkare",
     "latitud" : "40.435706",
     "longitud" : "-3.67384",
-    "tarifa" : "Normal"
-  }, {
-    "alias" : "0204410007",
-    "barrio" : "44 GUINDALERA.",
-    "direccion" : "AV. AMÉRICA Nº 14 frente a la caixa",
-    "empresa" : "Devas 2",
-    "estado" : "activo",
-    "fabricante" : "Parkare",
-    "latitud" : "40.438422",
-    "longitud" : "-3.675361",
     "tarifa" : "Normal"
   }, {
     "alias" : "0109330992",
@@ -13132,7 +13122,7 @@
     "barrio" : "52 PROSPERIDAD.",
     "direccion" : "SAN FERNANDO DEL JARAMA ESQ. PZA. NTRA. SRA. DEL P",
     "empresa" : "Devas 2",
-    "estado" : "activo",
+    "estado" : "desmontada",
     "fabricante" : "Parkare",
     "latitud" : "40.439596",
     "longitud" : "-3.675932",
@@ -14676,6 +14666,16 @@
     "latitud" : "40.454962",
     "longitud" : "-3.693295",
     "tarifa" : "ZBE"
+  }, {
+    "alias" : "0106231132",
+    "barrio" : "62 CUATRO CAMINOS.",
+    "direccion" : "Calle Palencia 21",
+    "empresa" : "Devas 1",
+    "estado" : "activo",
+    "fabricante" : "Parkeon",
+    "latitud" : "40.449860",
+    "longitud" : "-3.702126",
+    "tarifa" : "Normal"
   }, {
     "alias" : "0106330255",
     "barrio" : "63 CASTILLEJOS.",
