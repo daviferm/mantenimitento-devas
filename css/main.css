@@ -483,8 +483,8 @@ ul li:before {
 
 #send {
     position: absolute;
-    left: 3%;
-    top: 80vh;
+    left: 4%;
+    top: 75vh;
     width: 50px;
     height: 50px;
     background-color: #FF9933;
