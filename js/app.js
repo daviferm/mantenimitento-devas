@@ -13,7 +13,6 @@ const cerrarLi = document.querySelector('.cerrarLista');
 const lista = document.querySelector('.listaTareas');
 const title = document.querySelector('.title');
 
-
 //constante del icono del menu para añadir atributo del número de tareas creadas
 const mapSave = document.querySelector('.mapSave');
 
@@ -146,7 +145,7 @@ cerrarLi.addEventListener('click', function() {
     lista.style.transform = 'translateY(110%)';
 })
 
-let activeUl = true;
+// let activeUl = true;
 icon.addEventListener('click', ulSize);
 ul.addEventListener('click', (e) => {
 
@@ -561,10 +560,8 @@ let getPosicion = () => {
     // }
 }
 
+
+
+
 const locate = document.querySelector('.posicionGps');
 locate.addEventListener('click', getPosicion);
-
-// let tiempo1 = new Date("2019", "03", "10", "10", "10").getTime();
-// let tiempo2 = new Date("2019", "03", "16", "10", "10").getTime();
-
-// console.log(tiempo2 - tiempo1);
