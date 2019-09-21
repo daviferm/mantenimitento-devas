@@ -12,6 +12,15 @@ const ul = document.querySelector('#ul');
 const cerrarLi = document.querySelector('.cerrarLista');
 const lista = document.querySelector('.listaTareas');
 const title = document.querySelector('.title');
+const send = document.querySelector('#send');
+send.addEventListener('click', function() {
+    console.log('WHATSAPP ENVIADO..');
+    var whatsmsapi = new WhatsmsApi("5d86162a97cdb");
+    whatsmsapi.sendSms({
+        phone: "34645864388",
+        text: "Hola desde Whatsmsapi!"
+    });
+})
 
 //constante del icono del menu para añadir atributo del número de tareas creadas
 const mapSave = document.querySelector('.mapSave');
