@@ -2,6 +2,6 @@
 
 # Control de mantenimiento 
 
-app para llevar un control de mantenimiento de parquímetros
+app para llevar un control de mantenimiento por barrios de parquímetros
 
-con la api de google maps.
+con la api de google maps. Javascript
