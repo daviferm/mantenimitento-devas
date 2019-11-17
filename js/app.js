@@ -26,8 +26,8 @@ send.addEventListener('click', function() {
 const mapSave = document.querySelector('.mapSave');
 
 //Llenamos el listado de barrios
-const barriosHTML = ["44 Guindalera", "45 Lista", "46 Castellana", "51 El Viso", "52 Prosperidad", "53 Ciudad Jardín", "54 Hispanoamérica", "55 Nueva España", "56 Castilla", "61 Bellas Vistas", "62 Cuatro Caminos", "63 Castillejos", "64 Almenara", "65 Valdeacederas", "66 Berruguete", "75 Rios Rosas", "76 Vallehermoso", "84 Pilar", "85 La Paz", "93 Ciudad Universitaria"];
-const listaBarrios = [44, 45, 46, 51, 52, 53, 54, 55, 56, 61, 62, 63, 64, 65, 66, 75, 76, 84, 85, 93];
+const barriosHTML = ["44 Guindalera", "45 Lista", "46 Castellana", "51 El Viso", "52 Prosperidad", "53 Ciudad Jardín", "54 Hispanoamérica", "55 Nueva España", "56 Castilla", "61 Bellas Vistas", "62 Cuatro Caminos", "63 Castillejos", "64 Almenara", "65 Valdeacederas", "66 Berruguete", "75 Rios Rosas", "76 Vallehermoso", "84 Pilar", "85 La Paz", "93 Ciudad Universitaria", "94 Valdezarza"];
+const listaBarrios = [44, 45, 46, 51, 52, 53, 54, 55, 56, 61, 62, 63, 64, 65, 66, 75, 76, 84, 85, 93, 94];
 
 //Llenamos el select con la lista de barrios
 for (let i = 0; i < listaBarrios.length; i++) {
@@ -450,12 +450,14 @@ function optenerCentro(barrio) {
         case 93:
             centro = { lat: 40.449879, lng: -3.714955 };
             break;
+        case 94:
+            centro = { lat: 40.461083, lng: -3.710878 };
     }
 
     return centro;
 }
 
-//Cargar mapa guardado al cliquear en un enlace
+// Cargar mapa guardado al cliquear en un enlace
 function cargarMapaGuardado(nameMap) {
     window.scrollBy(0, -window.innerHeight);
 

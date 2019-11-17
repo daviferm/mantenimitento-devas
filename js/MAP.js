@@ -117,6 +117,7 @@ export class Mapa {
                 }
             }
         })
+        console.log(mets);
 
         //Guardar datos en localStorage
         agregarMapaLocalStorage(name);
