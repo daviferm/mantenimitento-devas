@@ -452,6 +452,10 @@ function optenerCentro(barrio) {
             break;
         case 94:
             centro = { lat: 40.461083, lng: -3.710878 };
+            break;
+        default:
+            centro = { lat: 40.459081, lng: -3.693029 };
+            break;
     }
 
     return centro;
