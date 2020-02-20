@@ -75,12 +75,14 @@ export class Mapa {
     async crearMapa(barrioSeleccionado, name) {
 
         let mets = [];
+        const urlData = 'https://app-devas.firebaseio.com/parkimetros.json';
 
         let data = await fetch('data/data.json')
             .then(function(res) {
                 let respuesta = res.json();
                 return respuesta;
             });
+
 
 
         let baseDatosMets = data.parkimetros;
@@ -117,7 +119,6 @@ export class Mapa {
                 }
             }
         })
-        console.log(mets);
 
         //Guardar datos en localStorage
         agregarMapaLocalStorage(name);
