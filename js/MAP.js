@@ -14,6 +14,7 @@ export class Mapa {
         });
 
         this.infoWindowActivo;
+
     }
 
     mostrarPin(latLng, contenido, opacidad, name, alias) {
@@ -69,7 +70,15 @@ export class Mapa {
             this.infoWindowActivo = infowindow;
 
         })
+    }
+    cerrarIfoWindow(e) {
 
+        console.log(e.target);
+
+        // if (this.infoWindowActivo) {
+        //     console.log(this.infoWindowActivo);
+        //     this.infoWindowActivo.close();
+        // }
     }
 
     async crearMapa(barrioSeleccionado, name) {

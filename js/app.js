@@ -13,6 +13,7 @@ const cerrarLi = document.querySelector('.cerrarLista');
 const lista = document.querySelector('.listaTareas');
 const title = document.querySelector('.title');
 const send = document.querySelector('#send');
+const targetMapa = document.getElementById('map');
 send.addEventListener('click', function() {
     console.log('WHATSAPP ENVIADO..');
     var whatsmsapi = new WhatsmsApi("5d86162a97cdb");
@@ -21,6 +22,8 @@ send.addEventListener('click', function() {
         text: "Hola desde Whatsmsapi!"
     });
 })
+
+
 
 //constante del icono del menu para añadir atributo del número de tareas creadas
 const mapSave = document.querySelector('.mapSave');
@@ -51,6 +54,7 @@ async function mostrarMapa(e) {
     e.preventDefault();
 
     const barrioSeleccionado = selectBarrio.options[selectBarrio.selectedIndex].value;
+    let mapa;
 
     if (barrioSeleccionado == 0) {
         alert("Tienes que seleccionar un barrio");
@@ -76,7 +80,7 @@ async function mostrarMapa(e) {
 
             const latLng = optenerCentro(barrioSeleccionado);
 
-            const mapa = new Mapa(15, latLng);
+            mapa = new Mapa(15, latLng);
 
             //Mostrar todos los parquímetros en el mapa 
 
@@ -90,7 +94,9 @@ async function mostrarMapa(e) {
             }, 400);
 
         }
+
     }
+
 }
 
 function comprobarNombre(name) {
@@ -510,6 +516,10 @@ function cargarMapaGuardado(nameMap) {
         let cont = document.querySelector('.infoPark');
     })
     let miPosicion = mapa.getPosicion();
+    console.log(targetMapa);
+    targetMapa.addEventListener('click', function(e) {
+        mapa.cerrarIfoWindow(e);
+    })
 
 
 }
