@@ -1,88 +1,35 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <script src="js/modernizr.js"></script>
-    <link href="https://unpkg.com/ionicons@4.2.4/dist/css/ionicons.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/main.css">
-    <!-- <script src="js/baseDatos.js"></script> -->
-    <title>Mantenimiento Devas</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta charset="utf-8">
+    <title>MantBarrios</title>
+    <base href="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="styles.b75405398e7e829fb933.css">
 </head>
 
 <body>
-    <main>
-        <div class="header">
-            <header>
-                <div class="formulario">
-                    <form action="#" id="formulario">
-                        <section class="for">
-                            <div class="barrio">
-                                <select class="form-control" id="barrio">
-                                    <option value="0">Selectiona un Barrio</option>
-                                </select>
-                            </div>
-                            <div class="botonForm">
-                                <button id="botonMapa" type="submit">
-                                    <ion-icon name="add"></ion-icon>
-                                </button>
-                            </div>
-                        </section>
-                    </form>
-                </div>
-            </header>
-        </div>
-        <div class="main">
-            <div id="mapa">
-                <div id="map"></div>
-            </div>
-        </div>
-        <div class="listaTareas">
-            <div class="cerrarLista">
-                <div class="arrow"></div>
-                <!-- <p>X</p> -->
-            </div>
-            <ul id="ul">
-                <div class="noList animated fast fadeIn">
-                    <p>Ninguna tarea añadida</p>
-                </div>
-                <div class="title animated fast fadeIn">
-                    <h5>Papelera de reciclage</h5>
-                    <p class="desc">Los mapas se eliminaran definitivamente a los 7 días.</p>
-                </div>
+    <app-root></app-root>
 
-            </ul>
-            <!-- <footer></footer> -->
-            <div id="send">
-                <a href="whatsapp://send?phone=34645864388&text=https://daviferm.github.io/mantenimitento-devas/%20Escribe%20aquí%20tu%20incidencia...">
-                    <ion-icon name="logo-whatsapp"></ion-icon>
-                </a>
-            </div>
-        </div>
-        <div class="mapSave">
-            <div class="ul">
-                <ion-icon name="menu"></ion-icon>
-            </div>
-        </div>
-        <div class="posicionGps">
-            <!-- <ion-icon name="navigate"></ion-icon> -->
-            <img src="img/papelera.png" alt="">
-            <!-- <ion-icon name="paper"></ion-icon> -->
-        </div>
-    </main>
 
-    <!-- Texto de prueba -->
 
-    <script src="https://smtpjs.com/v3/smtp.js"></script>
-    <script src="https://unpkg.com/ionicons@4.2.4/dist/ionicons.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpPC3Lc1ovVJMm5tXfyMqchiu38cL6_eA"></script>
-    <!-- <script src="js/mobile.js"></script> -->
-    <script src="./js/sweetalert2.all.min.js"></script>
-    <!-- <script src="https://unpkg.com/promise-polyfill"></script> -->
-    <script src="js/app.js" type="module"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script src="runtime-es2015.c5fa8325f89fc516600b.js" type="module"></script>
+    <script src="runtime-es5.c5fa8325f89fc516600b.js" nomodule defer></script>
+    <script src="polyfills-es5.3e8196928d184a6e5319.js" nomodule defer></script>
+    <script src="polyfills-es2015.5b10b8fd823b6392f1fd.js" type="module"></script>
+    <script src="main-es2015.492b8835d9fede729847.js" type="module"></script>
+    <script src="main-es5.492b8835d9fede729847.js" nomodule defer></script>
 </body>
 
 </html>
